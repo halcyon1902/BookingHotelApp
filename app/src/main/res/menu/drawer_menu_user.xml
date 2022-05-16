@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/account"
+            android:icon="@drawable/circled_user_male"
+            android:title="@string/account" />
+        <item
+            android:id="@+id/hobby"
+            android:icon="@drawable/romantic_place"
+            android:title="@string/favorite" />
+        <item
+            android:id="@+id/history"
+            android:icon="@drawable/order_history"
+            android:title="@string/history" />
+        <item
+            android:id="@+id/sign_out"
+            android:icon="@drawable/sign_out"
+            android:title="@string/sign_out" />
+    </group>
+
+    <item android:title="@string/function">
+        <menu>
+            <item
+                android:id="@+id/declaration"
+                android:icon="@drawable/flyer_distributor_male"
+                android:title="@string/declaration" />
+            <item
+                android:id="@+id/question"
+                android:icon="@drawable/ask_question"
+                android:title="@string/faq" />
+            <item
+                android:id="@+id/setting"
+                android:icon="@drawable/settings"
+                android:title="@string/settings" />
+        </menu>
+    </item>
+
+    <item android:title="@string/another_function">
+        <menu>
+            <item
+                android:id="@+id/appInfo"
+                android:icon="@drawable/info"
+                android:title="@string/information_app" />
+            <item
+                android:id="@+id/exit"
+                android:icon="@drawable/shutdown"
+                android:title="@string/exit" />
+        </menu>
+    </item>
+
+</menu>

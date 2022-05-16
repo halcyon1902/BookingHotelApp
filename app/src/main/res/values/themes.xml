@@ -1,0 +1,24 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.BookingHotel" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/PrimaryColor</item>
+        <item name="colorPrimaryVariant">@color/PrimaryLightColor</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/SecondaryColor</item>
+        <item name="colorSecondaryVariant">@color/SecondaryLightColor</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="EditScreenTextInputLayoutStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorControlNormal">@color/textInputLayout</item>
+        <item name="colorControlActivated">@color/textInputLayout</item>
+        <item name="colorControlHighlight">@color/textInputLayout</item>
+        <item name="colorAccent">@color/textInputLayout</item>
+        <item name="android:textColorHint">@color/textInputLayout</item>
+    </style>
+</resources>

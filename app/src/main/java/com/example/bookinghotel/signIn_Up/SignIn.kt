@@ -1,0 +1,116 @@
+package com.example.bookinghotel.signIn_Up
+
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.bookinghotel.R
+import com.example.bookinghotel.databinding.ActivitySignInBinding
+import com.example.bookinghotel.mainscreen.MainScreenUser
+import com.example.bookinghotel.mainscreen.OnSwipeTouchListener
+import com.google.firebase.auth.FirebaseAuth
+
+class SignIn : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySignInBinding
+    private lateinit var auth: FirebaseAuth
+    var count = 0
+
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivitySignInBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val preferences = getSharedPreferences("checkbox", MODE_PRIVATE)
+        val checkbox = preferences.getString("remember", "")
+
+        if (checkbox == "true") {
+            startActivity(Intent(this@SignIn, MainScreenUser::class.java))
+            finish()
+        }
+        auth = FirebaseAuth.getInstance()
+        binding.btnDangNhap.setOnClickListener {
+            signIn()
+        }
+        binding.btnDangKy.setOnClickListener {
+            val intent = Intent(this, SignUp::class.java)
+            startActivity(intent)
+            finish()
+        }
+        binding.tvQuenMatKhau.setOnClickListener {
+            startActivity(Intent(this, FogotPassword::class.java))
+            finish()
+
+        }
+        binding.chbRememberMe.setOnCheckedChangeListener { compoundButton, _ ->
+            if (compoundButton.isChecked) {
+                val editor = preferences.edit()
+                editor.putString("remember", "true")
+                editor.apply()
+                Toast.makeText(this@SignIn, "Checked", Toast.LENGTH_SHORT).show()
+            } else if (!compoundButton.isChecked) {
+                val editor = preferences.edit()
+                editor.putString("remember", "false")
+                editor.apply()
+                Toast.makeText(this@SignIn, "Unchecked", Toast.LENGTH_SHORT).show()
+            }
+        }
+        binding.imageView.setOnTouchListener(object : OnSwipeTouchListener(this@SignIn) {
+            override fun onSwipeRight() {
+                if (count == 0) {
+                    binding.imageView.setImageResource(R.drawable.good_night_img)
+                    binding.textView.text = "Night"
+                    count = 1
+                } else {
+                    binding.imageView.setImageResource(R.drawable.good_morning_img)
+                    binding.textView.text = "Morning"
+                    count = 0
+                }
+            }
+
+            override fun onSwipeLeft() {
+                if (count == 0) {
+                    binding.imageView.setImageResource(R.drawable.good_night_img)
+                    binding.textView.text = "Night"
+                    count = 1
+                } else {
+                    binding.imageView.setImageResource(R.drawable.good_morning_img)
+                    binding.textView.text = "Morning"
+                    count = 0
+                }
+            }
+        })
+    }
+
+    private fun signIn() {
+        val strEmail = binding.edtTenTaiKhoan.text.toString().trim()
+        val strPassword = binding.edtMatKhau.text.toString().trim()
+
+        if (strEmail.isEmpty()) {
+            binding.edtTenTaiKhoan.error = "Please enter email"
+            binding.edtTenTaiKhoan.requestFocus()
+            return
+        }
+
+        if (strPassword.isEmpty()) {
+            binding.edtMatKhau.error = "Please enter email"
+            binding.edtMatKhau.requestFocus()
+            return
+        }
+
+        auth.signInWithEmailAndPassword(strEmail, strPassword)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val intent = Intent(this, MainScreenUser::class.java)
+                    startActivity(intent)
+                    Toast.makeText(this, "Logged in successfully", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(this, "Wrong email or password", Toast.LENGTH_LONG)
+                        .show()
+
+                }
+            }
+    }
+}
