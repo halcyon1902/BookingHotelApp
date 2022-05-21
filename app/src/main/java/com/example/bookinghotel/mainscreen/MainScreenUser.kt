@@ -4,17 +4,24 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.bookinghotel.R
+import com.example.bookinghotel.User
 import com.example.bookinghotel.loading.LoadingExit
 import com.example.bookinghotel.signIn_Up.SignIn
 import com.example.bookinghotel.userInterface.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.*
+import de.hdodenhof.circleimageview.CircleImageView
 
 
 class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -23,13 +30,12 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var floatingActionButton: FloatingActionButton
     private lateinit var navigationView: NavigationView
-    private lateinit var homeFragment: HomeFragmentUser
-    private lateinit var accountFragmentUser: AccountFragmentUser
-    private lateinit var historyFragmentUser: HistoryFragmentUser
-    private lateinit var favoriteFragmentUser: FavoriteFragmentUser
-    private lateinit var appInfoFragmentUser: AppInfoFragmentUser
-    private lateinit var settingsFragmentUser: SettingsFragmentUser
-    private lateinit var faqFragmentUser: FAQFragmentUser
+    private lateinit var name : TextView
+    private lateinit var mail : TextView
+    private lateinit var image : CircleImageView
+    private var userId: String? = null
+    private var user: FirebaseUser? = null
+    private lateinit var database: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_screen_user)
@@ -38,17 +44,19 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         drawerLayout = findViewById(R.id.mainscreen_user)
         navigationView = findViewById(R.id.nav_view)
         floatingActionButton = findViewById(R.id.fab)
-//        val headerView: View = navigationView.getHeaderView(0)
-//        val name = headerView.findViewById<TextView>(R.id.username)
-//        val gmail = headerView.findViewById<TextView>(R.id.username_gmail)
-//        val image = headerView.findViewById<CircleImageView>(R.id.profile_image)
+        setCurrentFragment(HomeFragmentUser())
+        val headerView: View = navigationView.getHeaderView(0)
+        name = headerView.findViewById(R.id.username)
+        mail = headerView.findViewById(R.id.username_gmail)
+        image = headerView.findViewById(R.id.profile_image)
         // set event
+        displayProfile()
         navigationView.setNavigationItemSelectedListener(this)
         navigationView.itemIconTintList = null
         bottomNavigationView.itemIconTintList = null
         bottomNavigationView.menu.getItem(0).isCheckable = false
         floatingActionButton.setOnClickListener {
-            setCurrentFragment(homeFragment)
+            setCurrentFragment(HomeFragmentUser())
         }
         bottomNavigationView.setOnItemSelectedListener {
             it.isCheckable = true
@@ -58,11 +66,11 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                     true
                 }
                 R.id.user_account -> {
-                    setCurrentFragment(accountFragmentUser)
+                    setCurrentFragment(AccountFragmentUser())
                     true
                 }
                 R.id.user_history -> {
-                    setCurrentFragment(historyFragmentUser)
+                    setCurrentFragment(HistoryFragmentUser())
                     true
                 }
                 else -> false
@@ -87,9 +95,9 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         item.isCheckable = true
         drawerLayout.closeDrawers()
         when (item.itemId) {
-            R.id.account -> setCurrentFragment(accountFragmentUser)
-            R.id.history -> setCurrentFragment(historyFragmentUser)
-            R.id.hobby -> setCurrentFragment(favoriteFragmentUser)
+            R.id.account -> setCurrentFragment(AccountFragmentUser())
+            R.id.history -> setCurrentFragment(HistoryFragmentUser())
+            R.id.hobby -> setCurrentFragment(FavoriteFragmentUser())
             R.id.sign_out -> {
                 val preferences = getSharedPreferences("checkbox", MODE_PRIVATE)
                 val editor = preferences.edit()
@@ -99,12 +107,35 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 this.finish()
             }
             R.id.declaration -> goToUrl("https://tokhaiyte.vn/")
-            R.id.question -> setCurrentFragment(faqFragmentUser)
-            R.id.setting -> setCurrentFragment(settingsFragmentUser)
-            R.id.appInfo -> setCurrentFragment(appInfoFragmentUser)
+            R.id.question -> setCurrentFragment(FAQFragmentUser())
+            R.id.setting -> setCurrentFragment(SettingsFragmentUser())
+            R.id.appInfo -> setCurrentFragment(AppInfoFragmentUser())
             R.id.exit -> startActivity(Intent(this, LoadingExit::class.java))
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+    private fun displayProfile() {
+        val auth = FirebaseAuth.getInstance()
+        userId = auth.uid
+        user = FirebaseAuth.getInstance().currentUser
+        database = FirebaseDatabase.getInstance().getReference("user")
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var user: User?
+                for (child: DataSnapshot? in snapshot.children) {
+                    if (child?.key.equals(userId)) {
+                        user = child!!.getValue(User::class.java)
+                        assert(user != null)
+                        name?.setText(user?.name)
+                        mail?.setText(user?.email)
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
     }
 }

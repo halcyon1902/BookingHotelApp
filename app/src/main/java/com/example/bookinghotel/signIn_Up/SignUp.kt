@@ -6,7 +6,7 @@ import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bookinghotel.User
-import com.example.bookinghotel.databinding.ActivitySignUpBinding
+import com.example.bookinghotel.databinding.SignUpBinding
 import com.example.bookinghotel.mainscreen.MainScreenUser
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -15,17 +15,17 @@ import com.google.firebase.database.FirebaseDatabase
 
 class SignUp : AppCompatActivity() {
 
-    private lateinit var binding : ActivitySignUpBinding
+    private lateinit var binding: SignUpBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var reference: DatabaseReference
-    private lateinit var firebaseUser : FirebaseUser
-    private lateinit var userId : String
+    private lateinit var firebaseUser: FirebaseUser
+    private lateinit var userId: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
 
 
-        binding = ActivitySignUpBinding.inflate(layoutInflater)
+        binding = SignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btnSignUp.setOnClickListener {
@@ -33,7 +33,8 @@ class SignUp : AppCompatActivity() {
         }
 
         binding.btnBack.setOnClickListener {
-            onBackPressed()
+            startActivity(Intent(this, SignIn::class.java))
+            finish()
         }
 
         auth = FirebaseAuth.getInstance()
@@ -47,32 +48,32 @@ class SignUp : AppCompatActivity() {
         val strVerifyPass = binding.edtVerifypass.text.toString().trim()
         val strFullName = binding.edtFullname.text.toString().trim()
 
-        if(strEmail.isEmpty()){
+        if (strEmail.isEmpty()) {
             binding.edtEmail.error = "Please enter email !"
             binding.edtEmail.requestFocus()
             return
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(strEmail).matches()) {
-                binding.edtEmail.error = "Email invalid"
-                binding.edtEmail.requestFocus()
-                return
+            binding.edtEmail.error = "Email invalid"
+            binding.edtEmail.requestFocus()
+            return
         }
-        if(strPassword.isEmpty()){
+        if (strPassword.isEmpty()) {
             binding.edtPassword.error = "Please enter password !"
             binding.edtPassword.requestFocus()
             return
         }
-        if(strPassword.length <6){
+        if (strPassword.length < 6) {
             binding.edtPassword.error = "Password must be bigger than 6 characters!"
             binding.edtPassword.requestFocus()
             return
         }
-        if(strVerifyPass != strPassword){
+        if (strVerifyPass != strPassword) {
             binding.edtVerifypass.error = "Password doesn't match!"
             binding.edtVerifypass.requestFocus()
             return
         }
-        if (strFullName.isEmpty()){
+        if (strFullName.isEmpty()) {
             binding.edtFullname.error = "Please enter full name !"
             binding.edtFullname.requestFocus()
             return
@@ -80,24 +81,24 @@ class SignUp : AppCompatActivity() {
 
 
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
-        auth.createUserWithEmailAndPassword(strEmail,strPassword)
-            .addOnCompleteListener{ task ->
+        auth.createUserWithEmailAndPassword(strEmail, strPassword)
+            .addOnCompleteListener { task ->
                 userId = auth.currentUser!!.uid
-                if(task.isSuccessful){
+                if (task.isSuccessful) {
 
                     reference = FirebaseDatabase.getInstance().getReference("user")
-                    val user = User(strEmail,strFullName,strPhone)
+                    val user = User(strEmail, strFullName, strPhone)
                     reference.child(userId).setValue(user)
 
-                    startActivity(Intent(this,MainScreenUser::class.java))
+                    startActivity(Intent(this, MainScreenUser::class.java))
                     showToast("Sign Up success")
-                }else{
+                } else {
                     showToast("Sign Up failed")
                 }
             }
     }
 
-    private fun showToast(mess : String){
-        Toast.makeText(applicationContext,mess,Toast.LENGTH_SHORT).show()
+    private fun showToast(mess: String) {
+        Toast.makeText(applicationContext, mess, Toast.LENGTH_SHORT).show()
     }
 }

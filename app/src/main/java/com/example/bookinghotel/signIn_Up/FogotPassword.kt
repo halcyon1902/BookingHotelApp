@@ -5,15 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
-import com.example.bookinghotel.databinding.ActivityFogotPasswordBinding
+import com.example.bookinghotel.databinding.FogotPasswordBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class FogotPassword : AppCompatActivity() {
 
-    private lateinit var binding: ActivityFogotPasswordBinding
+    private lateinit var binding: FogotPasswordBinding
     private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActivityFogotPasswordBinding.inflate(layoutInflater)
+        binding = FogotPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
         super.onCreate(savedInstanceState)
 
@@ -26,8 +26,6 @@ class FogotPassword : AppCompatActivity() {
         binding.btnXacNhan.setOnClickListener {
             fogotPassword()
         }
-
-
 
     }
 
@@ -44,8 +42,8 @@ class FogotPassword : AppCompatActivity() {
         }else{
             auth.sendPasswordResetEmail(strEmail).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    startActivity(Intent(this, SignIn::class.java))
                     showToast("Please Check email")
+                    startActivity(Intent(this, SignIn::class.java))
                     finish()
                 }
                 else{

@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.bookinghotel">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookingHotel">
         <activity
-            android:name=".loading.LoadingMain"
+            android:name=".otp.OTP"
+            android:exported="false" />
+        <activity
+            android:name=".userInterface.EditAvatar"
+            android:exported="false" />
+        <activity
+            android:name=".userInterface.UpdatePassword"
+            android:exported="false" />
+        <activity
+            android:name=".loading.LoadingHotel"
             android:exported="false" />
         <activity
             android:name=".signIn_Up.SignIn"
@@ -35,9 +47,6 @@
             android:exported="false" />
         <activity
             android:name=".signIn_Up.SignUp"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
             android:exported="false" />
     </application>
 

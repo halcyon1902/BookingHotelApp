@@ -77,7 +77,7 @@
         android:fontFamily="@font/calibri"
         android:gravity="center"
         android:text="@string/everything_right_where_you_need_it"
-        android:textColor="#9affffff"
+        android:textColor="#E0F2F1"
         android:textSize="15sp"
         tools:ignore="SmallSp" />
 
@@ -161,7 +161,8 @@
                 android:gravity="center"
                 android:text="@string/remember_me"
                 android:textColor="@color/white"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout

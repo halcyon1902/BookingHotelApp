@@ -9,10 +9,10 @@ import com.airbnb.lottie.LottieAnimationView
 import com.example.bookinghotel.R
 import com.example.bookinghotel.signIn_Up.SignIn
 
-class LoadingMain : AppCompatActivity() {
+class LoadingHotel : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.loading_main)
+        setContentView(R.layout.loading_hotel)
         val lottie = findViewById<LottieAnimationView>(R.id.lottie)
 
         lottie.animate().setDuration(2000).startDelay = 5000
@@ -21,6 +21,6 @@ class LoadingMain : AppCompatActivity() {
             val intent = Intent(this, SignIn::class.java)
             startActivity(intent)
             finish()
-        }, 8000)
+        }, 5000)
     }
 }
