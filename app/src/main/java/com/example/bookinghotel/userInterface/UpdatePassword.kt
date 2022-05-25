@@ -1,16 +1,20 @@
 package com.example.bookinghotel.userInterface
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bookinghotel.R
+import com.example.bookinghotel.signIn_Up.SignIn
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import java.util.*
+import kotlin.concurrent.schedule
 
 
 class UpdatePassword : AppCompatActivity() {
@@ -103,6 +107,17 @@ class UpdatePassword : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
             }
-        finish()
+        Timer().schedule(2000) {
+            exitApp()
+        }
+    }
+
+    private fun exitApp() {
+        val preferences = getSharedPreferences("checkbox", MODE_PRIVATE)
+        val editor = preferences.edit()
+        editor.putString("remember", "false")
+        editor.apply()
+        startActivity(Intent(this, SignIn::class.java))
+        this.finish()
     }
 }

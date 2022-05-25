@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.bookinghotel.R
 import com.example.bookinghotel.User
 import com.example.bookinghotel.loading.LoadingExit
@@ -30,9 +31,9 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var floatingActionButton: FloatingActionButton
     private lateinit var navigationView: NavigationView
-    private lateinit var name : TextView
-    private lateinit var mail : TextView
-    private lateinit var image : CircleImageView
+    private lateinit var name: TextView
+    private lateinit var mail: TextView
+    private lateinit var image: CircleImageView
     private var userId: String? = null
     private var user: FirebaseUser? = null
     private lateinit var database: DatabaseReference
@@ -115,6 +116,7 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
+
     private fun displayProfile() {
         val auth = FirebaseAuth.getInstance()
         userId = auth.uid
@@ -127,8 +129,12 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                     if (child?.key.equals(userId)) {
                         user = child!!.getValue(User::class.java)
                         assert(user != null)
-                        name?.setText(user?.name)
-                        mail?.setText(user?.email)
+                        name.text = user?.name
+                        mail.text = user?.email
+                        Glide.with(this@MainScreenUser).load(user?.image)
+                            .placeholder(R.drawable.test_account)
+                            .fitCenter().into(image)
+
                     }
                 }
             }

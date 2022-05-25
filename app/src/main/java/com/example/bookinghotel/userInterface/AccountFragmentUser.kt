@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.bookinghotel.R
 import com.example.bookinghotel.User
 import com.google.android.material.card.MaterialCardView
@@ -16,6 +17,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import de.hdodenhof.circleimageview.CircleImageView
 
 
 class AccountFragmentUser : Fragment() {
@@ -25,6 +27,7 @@ class AccountFragmentUser : Fragment() {
     private var mail: TextInputEditText? = null
     private var phone: TextInputEditText? = null
     private var name: TextInputEditText? = null
+    private lateinit var image: CircleImageView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,6 +38,7 @@ class AccountFragmentUser : Fragment() {
         val updatePassword = view.findViewById<MaterialCardView>(R.id.updatePassword)
         val updateProfile = view.findViewById<MaterialCardView>(R.id.updateProfile)
         val btnsave = view.findViewById<Button>(R.id.btn_Save)
+        image = view.findViewById(R.id.profile_image)
         updatePassword.setOnClickListener {
             val intent = Intent(activity, UpdatePassword::class.java)
             activity?.startActivity(intent)
@@ -51,7 +55,7 @@ class AccountFragmentUser : Fragment() {
         btnsave.setOnClickListener {
             val username: String = name?.text.toString()
             val userphone: String = phone?.text.toString()
-            updateDate(username, userphone)
+            updateUser(username, userphone)
             btnsave.visibility = View.INVISIBLE
             phone?.isEnabled = false
             name?.isEnabled = false
@@ -82,6 +86,9 @@ class AccountFragmentUser : Fragment() {
                         name?.setText(user?.name)
                         mail?.setText(user?.email)
                         phone?.setText(user?.phone)
+                        Glide.with(this@AccountFragmentUser).load(user?.image)
+                            .placeholder(R.drawable.test_account)
+                            .fitCenter().into(image)
                     }
                 }
             }
@@ -92,7 +99,7 @@ class AccountFragmentUser : Fragment() {
         })
     }
 
-    private fun updateDate(username: String, userphone: String) {
+    private fun updateUser(username: String, userphone: String) {
         if (name?.text.toString().trim().isEmpty()) {
             name?.error = "Name cannot be left blank"
             name?.requestFocus()

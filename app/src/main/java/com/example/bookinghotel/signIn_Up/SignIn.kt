@@ -2,13 +2,14 @@ package com.example.bookinghotel.signIn_Up
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bookinghotel.R
+import com.example.bookinghotel.behavior.OnSwipeTouchListener
 import com.example.bookinghotel.databinding.SignInBinding
 import com.example.bookinghotel.mainscreen.MainScreenUser
-import com.example.bookinghotel.mainscreen.OnSwipeTouchListener
 import com.google.firebase.auth.FirebaseAuth
 
 class SignIn : AppCompatActivity() {
@@ -23,9 +24,9 @@ class SignIn : AppCompatActivity() {
         binding = SignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val preferences = getSharedPreferences("checkbox", MODE_PRIVATE)
-        val checkbox = preferences.getString("remember", "")
-        if (checkbox == "true") {
+        val preferences: SharedPreferences = getSharedPreferences("checkbox", MODE_PRIVATE)
+        val checkbox : String? = preferences.getString("remember", "")
+        if (checkbox.equals("true")) {
             startActivity(Intent(this@SignIn, MainScreenUser::class.java))
             finish()
         }
@@ -34,6 +35,7 @@ class SignIn : AppCompatActivity() {
             signIn()
         }
         binding.btnDangKy.setOnClickListener {
+            binding.chbRememberMe.isChecked = false
             val intent = Intent(this, SignUp::class.java)
             startActivity(intent)
             finish()
@@ -47,12 +49,14 @@ class SignIn : AppCompatActivity() {
         }
         binding.chbRememberMe.setOnCheckedChangeListener { compoundButton, _ ->
             if (compoundButton.isChecked) {
-                val editor = preferences.edit()
+                val check: SharedPreferences = getSharedPreferences("checkbox", MODE_PRIVATE)
+                val editor: SharedPreferences.Editor = check.edit()
                 editor.putString("remember", "true")
                 editor.apply()
 
             } else if (!compoundButton.isChecked) {
-                val editor = preferences.edit()
+                val check: SharedPreferences = getSharedPreferences("checkbox", MODE_PRIVATE)
+                val editor: SharedPreferences.Editor = check.edit()
                 editor.putString("remember", "false")
                 editor.apply()
             }
@@ -110,8 +114,7 @@ class SignIn : AppCompatActivity() {
                     Toast.makeText(this, "Logged in successfully", Toast.LENGTH_LONG).show()
                     finish()
                 } else {
-                    Toast.makeText(this, "Wrong email or password", Toast.LENGTH_LONG)
-                        .show()
+                    Toast.makeText(this, "Wrong email or password", Toast.LENGTH_LONG).show()
 
                 }
             }
