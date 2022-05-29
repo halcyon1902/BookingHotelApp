@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/PrimaryColor"
+    android:background="@drawable/background3"
     android:orientation="vertical"
     tools:context=".signIn_Up.SignUp">
 
@@ -12,7 +12,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="150dp"
         android:fontFamily="@font/manuale_bold"
         android:text="@string/create_account"
         android:textAlignment="center"
@@ -114,33 +114,35 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="-150dp"
         android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_verifypass">
 
         <Button
-            android:id="@+id/btn_back"
-            android:layout_width="150dp"
-            android:layout_height="70dp"
-            android:background="@drawable/button"
-            android:fontFamily="@font/manuale_bold"
-            android:text="@string/back"
-            android:textSize="25sp"
-            app:backgroundTint="@color/SecondaryColor"
-            tools:ignore="ButtonStyle,TouchTargetSizeCheck" />
-
-        <Button
             android:id="@+id/btn_sign_up"
             android:layout_width="150dp"
             android:layout_height="70dp"
-            android:layout_marginStart="30dp"
             android:background="@drawable/button"
             android:fontFamily="@font/manuale_bold"
             android:text="@string/sign_up"
+            android:textColor="@color/white"
             android:textSize="25sp"
-            app:backgroundTint="@color/SecondaryColor"
+            app:backgroundTint="@color/blue_soft"
             tools:ignore="ButtonStyle,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/txtView_Back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/manuale_bold"
+            android:padding="2dp"
+            android:text="@string/existing_user"
+            android:textColor="@color/royal_blue"
+            android:textSize="25sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

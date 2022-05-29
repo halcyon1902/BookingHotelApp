@@ -32,7 +32,7 @@ class SignUp : AppCompatActivity() {
             signUp()
         }
 
-        binding.btnBack.setOnClickListener {
+        binding.txtViewBack.setOnClickListener {
             startActivity(Intent(this, SignIn::class.java))
             finish()
         }

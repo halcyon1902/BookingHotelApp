@@ -109,7 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="#96ffffff"
-            android:theme="@style/EditScreenTextInputLayoutStyle"
+            android:theme="@style/TextInputLayoutStyle"
             app:endIconMode="clear_text"
             app:hintEnabled="true">
 
@@ -134,7 +134,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="#96ffffff"
-            android:theme="@style/EditScreenTextInputLayoutStyle"
+            android:theme="@style/TextInputLayoutStyle"
             app:endIconMode="password_toggle"
             app:hintEnabled="true">
 

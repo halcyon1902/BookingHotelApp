@@ -64,6 +64,8 @@ dependencies {
     implementation 'com.karumi:dexter:6.2.3'
     //Lottie animation
     implementation "com.airbnb.android:lottie:5.0.3"
+    //Card view
+    implementation 'androidx.cardview:cardview:1.0.0'
     //Circle image Viewer
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     //Androidx navigation Kotlin

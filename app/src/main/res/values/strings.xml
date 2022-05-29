@@ -30,7 +30,8 @@
     <string name="hey_what_would_you_like_to_booking_today">Hey, What would you like to booking today ?</string>
     <string name="online_support">Online support</string>
     <string name="update_profile">Update profile</string>
-    <string name="update_password">Update password</string>
+    <string name="update_password">Update</string>
+    <string name="change_pasword">Change User Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="new_password">New Password</string>
     <string name="old_password">Old Password</string>
@@ -43,6 +44,7 @@
     <string name="good">Good</string>
     <string name="txtNight">Night</string>
     <string name="txtMorning">Morning</string>
+    <string name="existing_user">Existing User? Sign In</string>
     <string name="large_text">
     "Material is the metaphor.\n\n"
 
@@ -137,4 +139,9 @@
     <string name="create_account">Create Account</string>
     <string name="update">Update</string>
     <string name="change_user_avatar">Change User Avatar</string>
+    <string name="room_number">room number</string>
+    <string name="price">price</string>
+    <string name="description">description</string>
+    <string name="double_bed">Double bed</string>
+    <string name="single_bed">Single bed</string>
 </resources>
