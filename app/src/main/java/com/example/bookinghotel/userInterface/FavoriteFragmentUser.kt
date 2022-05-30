@@ -14,6 +14,15 @@ class FavoriteFragmentUser : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
+
+
+
+
+
+
+
         return inflater.inflate(R.layout.fragment_favorite_user, container, false)
     }
 }

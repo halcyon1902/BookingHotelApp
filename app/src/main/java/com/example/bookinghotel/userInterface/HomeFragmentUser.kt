@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +23,7 @@ class HomeFragmentUser : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.fragment_home_user, container, false)
         val txtViewBooking = view.findViewById<TextView>(R.id.txtView_Booking)
+        val imageViewLikeRoom = view.findViewById<ImageView>(R.id.imageView_likeRoom)
         recyclerview = view.findViewById(R.id.recyclerview)
         recyclerview.layoutManager = LinearLayoutManager(activity)
         recyclerview.setHasFixedSize(true)
@@ -30,6 +32,9 @@ class HomeFragmentUser : Fragment() {
         getData()
         txtViewBooking?.setOnClickListener {
             startActivity(Intent(activity, LoadingHotel::class.java))
+        }
+        imageViewLikeRoom.setOnClickListener {
+
         }
         return view
     }
@@ -48,6 +53,7 @@ class HomeFragmentUser : Fragment() {
             override fun onCancelled(error: DatabaseError) {
 
             }
+
 
         })
     }
