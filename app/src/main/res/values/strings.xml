@@ -26,7 +26,8 @@
     <string name="function">Function</string>
     <string name="sign_out">Sign out</string>
     <string name="favorite">Favorite</string>
-    <string name="booking">Booking</string>
+    <string name="booking"><u>Booking</u>.</string>
+    <string name="explore">Explore</string>
     <string name="hey_what_would_you_like_to_booking_today">Hey, What would you like to booking today ?</string>
     <string name="online_support">Online support</string>
     <string name="update_profile">Update profile</string>

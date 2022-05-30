@@ -41,7 +41,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/txtView_Booking"
+            android:id="@+id/txtView_Explore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
@@ -49,7 +49,7 @@
             android:backgroundTint="@color/white"
             android:fontFamily="@font/bariol_bold"
             android:padding="15dp"
-            android:text="@string/booking"
+            android:text="@string/explore"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="25sp"
