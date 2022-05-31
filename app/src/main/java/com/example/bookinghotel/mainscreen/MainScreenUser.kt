@@ -96,9 +96,18 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         item.isCheckable = true
         drawerLayout.closeDrawers()
         when (item.itemId) {
-            R.id.account -> setCurrentFragment(AccountFragmentUser())
-            R.id.history -> setCurrentFragment(HistoryFragmentUser())
-            R.id.hobby -> setCurrentFragment(FavoriteFragmentUser())
+            R.id.account -> {
+                setCurrentFragment(AccountFragmentUser())
+                item.isCheckable=false
+            }
+            R.id.history -> {
+                setCurrentFragment(HistoryFragmentUser())
+                item.isCheckable=false
+            }
+            R.id.hobby -> {
+                setCurrentFragment(FavoriteFragmentUser())
+                item.isCheckable=false
+            }
             R.id.sign_out -> {
                 val preferences = getSharedPreferences("checkbox", MODE_PRIVATE)
                 val editor = preferences.edit()
@@ -107,10 +116,22 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 startActivity(Intent(this, SignIn::class.java))
                 this.finish()
             }
-            R.id.declaration -> goToUrl("https://tokhaiyte.vn/")
-            R.id.question -> setCurrentFragment(FAQFragmentUser())
-            R.id.setting -> setCurrentFragment(SettingsFragmentUser())
-            R.id.appInfo -> setCurrentFragment(AppInfoFragmentUser())
+            R.id.declaration -> {
+                goToUrl("https://tokhaiyte.vn/")
+                item.isCheckable=false
+            }
+            R.id.question -> {
+                setCurrentFragment(FAQFragmentUser())
+                item.isCheckable=false
+            }
+            R.id.setting -> {
+                setCurrentFragment(SettingsFragmentUser())
+                item.isCheckable=false
+            }
+            R.id.appInfo -> {
+                setCurrentFragment(AppInfoFragmentUser())
+                item.isCheckable=false
+            }
             R.id.exit -> startActivity(Intent(this, LoadingExit::class.java))
         }
         drawerLayout.closeDrawer(GravityCompat.START)

@@ -26,7 +26,7 @@
     <string name="function">Function</string>
     <string name="sign_out">Sign out</string>
     <string name="favorite">Favorite</string>
-    <string name="booking"><u>Booking</u>.</string>
+    <string name="booking">Booking.</string>
     <string name="explore">Explore</string>
     <string name="hey_what_would_you_like_to_booking_today">Hey, What would you like to booking today ?</string>
     <string name="online_support">Online support</string>
@@ -140,9 +140,12 @@
     <string name="create_account">Create Account</string>
     <string name="update">Update</string>
     <string name="change_user_avatar">Change User Avatar</string>
-    <string name="room_number">room number</string>
+    <string name="room_number">Room number</string>
     <string name="price">price</string>
     <string name="description">description</string>
     <string name="double_bed">Double bed</string>
     <string name="single_bed">Single bed</string>
+    <string name="room_type">Room Type</string>
+    <string name="type">type</string>
+    <string name="about">About</string>
 </resources>

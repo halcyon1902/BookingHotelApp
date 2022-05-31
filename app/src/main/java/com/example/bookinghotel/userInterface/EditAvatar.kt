@@ -237,7 +237,7 @@ class EditAvatar : AppCompatActivity() {
         val storageReference1 = storageReference.child(filepathname)
         val uploadTask = storageReference1.putFile(uri)
         //storageReference1.putFile(uri)
-        val uriTask = uploadTask.continueWithTask { task ->
+        uploadTask.continueWithTask { task ->
             if (!task.isSuccessful) {
                 task.exception?.let {
                     throw it
