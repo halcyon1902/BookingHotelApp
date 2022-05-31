@@ -2,7 +2,6 @@ package com.example.bookinghotel.userInterface
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -45,8 +44,8 @@ class ListHotel : AppCompatActivity(), HotelAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(position: Int) {
-        val intent=Intent(this@ListHotel,HotelDetail::class.java)
-        intent.putExtra("room",data[position].roomnumber)
+        val intent = Intent(this@ListHotel, HotelDetail::class.java)
+        intent.putExtra("room", data[position].roomnumber)
         startActivity(intent)
     }
 }
