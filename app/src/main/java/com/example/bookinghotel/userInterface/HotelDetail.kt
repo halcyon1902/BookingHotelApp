@@ -1,7 +1,6 @@
 package com.example.bookinghotel.userInterface
 
 import android.os.Bundle
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bookinghotel.Hotel
@@ -19,7 +18,7 @@ class HotelDetail : AppCompatActivity() {
         val txtDescription = findViewById<TextView>(R.id.txtView_descriptionDetail)
         val txtType = findViewById<TextView>(R.id.txtView_typeDetail)
         val txtPrice = findViewById<TextView>(R.id.txtView_priceDetail)
-        val btnBooking = findViewById<Button>(R.id.btn_Booking)
+        //val btnBooking = findViewById<Button>(R.id.btn_Booking)
         //event
         database = FirebaseDatabase.getInstance().getReference("hotel")
         database.addValueEventListener(object : ValueEventListener {
@@ -28,10 +27,10 @@ class HotelDetail : AppCompatActivity() {
                     for (roomSnapshot in snapshot.children) {
                         if (roomSnapshot.key.equals(roomnumber)) {
                             val room = roomSnapshot.getValue(Hotel::class.java)
-                            txtRoom.text=room?.roomnumber
-                            txtDescription.text=room?.mota
-                            txtType.text=room?.typeroom
-                            txtPrice.text=room?.price
+                            txtRoom.text = room?.roomnumber
+                            txtDescription.text = room?.mota
+                            txtType.text = room?.typeroom
+                            txtPrice.text = room?.price
                         }
 
                     }
