@@ -7,27 +7,28 @@
     android:layout_height="match_parent"
     tools:context=".userInterface.HotelDetail">
 
-
-    <ImageView
-        android:id="@+id/header_background"
-        android:layout_width="412dp"
-        android:layout_height="291dp"
+    <com.denzcoskun.imageslider.ImageSlider
+        android:id="@+id/imageView_roomDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
         android:transitionName="background_image_transition"
+        app:iss_auto_cycle="true"
+        app:iss_delay="0"
+        app:iss_period="1000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/background2"
-        tools:ignore="ContentDescription" />
+        app:srcCompat="@drawable/background2" />
 
     <ImageView
-        android:id="@+id/down_arrow"
+        android:id="@+id/imageView_backDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="34dp"
         android:src="@drawable/ic_down_arrow"
-        app:layout_constraintEnd_toEndOf="@+id/header_background"
-        app:layout_constraintTop_toTopOf="@+id/header_background"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_roomDetail"
+        app:layout_constraintTop_toTopOf="@+id/imageView_roomDetail"
         tools:ignore="ContentDescription" />
 
     <ScrollView
@@ -43,7 +44,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header_background">
+        app:layout_constraintTop_toBottomOf="@+id/imageView_roomDetail">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,6 +77,13 @@
                     android:textColor="@color/deep_pink"
                     android:textSize="30sp" />
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/favorire"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -94,7 +102,8 @@
                     android:numStars="5"
                     android:progressTint="@color/yellow_dark"
                     android:rating="0"
-                    android:stepSize="0.5" />
+                    android:stepSize="0.5"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
                 <TextView
                     android:id="@+id/ratingbar_Detail2"
@@ -127,7 +136,7 @@
                 android:alpha="0.5"
                 android:fontFamily="@font/open_sans_regular"
                 android:text="@string/description"
-                android:textColor="@color/colorPrimary"
+                android:textColor="#7986CB"
                 android:textSize="20sp" />
 
             <TextView
@@ -186,7 +195,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="50dp"
                 android:background="@drawable/button"
                 android:paddingLeft="50dp"
                 android:paddingRight="50dp"
@@ -194,6 +203,8 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:backgroundTint="@color/blue_soft" />
+
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

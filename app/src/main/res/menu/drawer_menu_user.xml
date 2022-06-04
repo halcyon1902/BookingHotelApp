@@ -25,22 +25,9 @@
     <item android:title="@string/function">
         <menu>
             <item
-                android:id="@+id/declaration"
-                android:icon="@drawable/flyer_distributor_male"
-                android:title="@string/declaration" />
-            <item
                 android:id="@+id/question"
                 android:icon="@drawable/ask_question"
                 android:title="@string/faq" />
-            <item
-                android:id="@+id/setting"
-                android:icon="@drawable/settings"
-                android:title="@string/settings" />
-        </menu>
-    </item>
-
-    <item android:title="@string/another_function">
-        <menu>
             <item
                 android:id="@+id/appInfo"
                 android:icon="@drawable/info"
@@ -51,5 +38,4 @@
                 android:title="@string/exit" />
         </menu>
     </item>
-
 </menu>

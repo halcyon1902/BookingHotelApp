@@ -6,10 +6,18 @@
     android:orientation="vertical"
     tools:context=".userInterface.ListHotel">
 
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/custom_search_view"
+        android:elevation="20dp"
+        android:queryHint="Search here..." />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcyView_Hotel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:itemCount="5"
         tools:listitem="@layout/card" />
 </LinearLayout>

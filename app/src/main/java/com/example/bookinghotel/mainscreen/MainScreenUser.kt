@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -40,7 +42,12 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_screen_user)
-
+        hideSystemBars()
+//        window.setFlags(
+//            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+//            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+//        )
+//        WindowCompat.setDecorFitsSystemWindows(window, false)
         bottomNavigationView = findViewById(R.id.bottom_nav_view_user)
         drawerLayout = findViewById(R.id.mainscreen_user)
         navigationView = findViewById(R.id.nav_view)
@@ -98,15 +105,15 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         when (item.itemId) {
             R.id.account -> {
                 setCurrentFragment(AccountFragmentUser())
-                item.isCheckable=false
+                item.isCheckable = false
             }
             R.id.history -> {
                 setCurrentFragment(HistoryFragmentUser())
-                item.isCheckable=false
+                item.isCheckable = false
             }
             R.id.hobby -> {
                 setCurrentFragment(FavoriteFragmentUser())
-                item.isCheckable=false
+                item.isCheckable = false
             }
             R.id.sign_out -> {
                 val preferences = getSharedPreferences("checkbox", MODE_PRIVATE)
@@ -116,21 +123,13 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 startActivity(Intent(this, SignIn::class.java))
                 this.finish()
             }
-            R.id.declaration -> {
-                goToUrl("https://tokhaiyte.vn/")
-                item.isCheckable=false
-            }
             R.id.question -> {
                 setCurrentFragment(FAQFragmentUser())
-                item.isCheckable=false
-            }
-            R.id.setting -> {
-                setCurrentFragment(SettingsFragmentUser())
-                item.isCheckable=false
+                item.isCheckable = false
             }
             R.id.appInfo -> {
                 setCurrentFragment(AppInfoFragmentUser())
-                item.isCheckable=false
+                item.isCheckable = false
             }
             R.id.exit -> startActivity(Intent(this, LoadingExit::class.java))
         }
@@ -164,5 +163,13 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
             }
         })
+    }
+
+    private fun hideSystemBars() {
+        val windowInsetsController =
+            ViewCompat.getWindowInsetsController(window.decorView) ?: return
+        windowInsetsController.systemBarsBehavior =
+            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+
     }
 }

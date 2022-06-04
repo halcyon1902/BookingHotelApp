@@ -49,37 +49,42 @@
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/drawable/buttonshapewhitebg.xml" value="0.255" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/drawable/custom_button.xml" value="0.2455" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/drawable/ic_back_arrow.xml" value="0.2455" />
+        <entry key="..\:/GitHub/BookingApp/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.2455" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/drawable/ic_baseline_photo_camera_24.xml" value="0.282" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/drawable/ic_down_arrow.xml" value="0.2455" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/drawable/ic_steps.xml" value="0.2455" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/drawable/text_input_box_stroke.xml" value="0.282" />
-        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/activity_hotel_detail.xml" value="0.20723684210526316" />
-        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/activity_list_hotel.xml" value="0.15592105263157896" />
+        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/activity_hotel_detail.xml" value="0.19177631578947368" />
+        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/activity_list_hotel.xml" value="0.15526315789473685" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/activity_main.xml" value="0.2636752136752137" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/activity_sign_in.xml" value="0.2846153846153846" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/activity_sign_up.xml" value="0.30085470085470084" />
+        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/app_bar_main_user.xml" value="0.22171052631578947" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/card.xml" value="0.1868421052631579" />
-        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/content_main_user.xml" value="0.22692307692307692" />
+        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/content_main_user.xml" value="0.23157894736842105" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/edit_avatar.xml" value="0.30085470085470084" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/edit_profile.xml" value="0.2636752136752137" />
+        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/favorite_card.xml" value="0.18486842105263157" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/fogot_password.xml" value="0.2726495726495726" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/fragment_account_user.xml" value="0.288034188034188" />
-        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/fragment_app_info_user.xml" value="0.14743589743589744" />
+        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/fragment_app_info_user.xml" value="0.22171052631578947" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/fragment_f_a_q_user.xml" value="0.14743589743589744" />
-        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/fragment_favorite_user.xml" value="0.11965811965811966" />
+        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/fragment_favorite_user.xml" value="0.18486842105263157" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/fragment_history_user.xml" value="0.11965811965811966" />
-        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/fragment_home_user.xml" value="0.1868421052631579" />
+        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/fragment_home_user.xml" value="0.22171052631578947" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/fragment_settings_user.xml" value="0.30085470085470084" />
+        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/loading_dialog.xml" value="0.23157894736842105" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/loading_hotel.xml" value="0.23034188034188033" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/loading_main.xml" value="0.23034188034188033" />
-        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/main_screen_user.xml" value="0.288034188034188" />
+        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/main_screen_user.xml" value="0.14835526315789474" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/nav_header_main.xml" value="0.1893162393162393" />
-        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/otp.xml" value="0.2299145299145299" />
+        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/otp.xml" value="0.15526315789473685" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/sign_in.xml" value="0.19177631578947368" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/sign_up.xml" value="0.25256410256410255" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/update_password.xml" value="0.30085470085470084" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/menu/bottom_menu_user.xml" value="0.26623931623931624" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/menu/card_layout.xml" value="0.26623931623931624" />
+        <entry key="..\:/GitHub/BookingApp/app/src/main/res/menu/drawer_menu_user.xml" value="0.19835526315789473" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/xml/root_preferences.xml" value="0.20625" />
       </map>
     </option>
