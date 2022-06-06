@@ -68,4 +68,17 @@
     <string name="type">type</string>
     <string name="about">About</string>
     <string name="please_wait_this_may_take_a_moment">Please wait! This may take a moment.</string>
+    <string name="text_error">Error</string>
+    <string name="text_success">Success</string>
+    <string name="text_ok">OK</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="text_yes">yes</string>
+    <string name="filter_by_type">Filter by type</string>
+    <string name="text_filter_options">Filter</string>
+    <string name="filter_by_price">Filter by price</string>
+    <string name="cancel">Cancel</string>
+    <string name="reset">Reset</string>
+    <string name="apply">Apply</string>
+    <string name="sort_by_type">Sort by type</string>
 </resources>

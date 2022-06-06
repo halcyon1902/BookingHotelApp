@@ -51,7 +51,7 @@ class FavoriteAdapter(
         }
 
         override fun onClick(v: View?) {
-            val position = adapterPosition
+            val position = bindingAdapterPosition
             if (position != RecyclerView.NO_POSITION) {
                 listener.onItemClick(position)
             }

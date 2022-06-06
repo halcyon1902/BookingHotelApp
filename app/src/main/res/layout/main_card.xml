@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:elevation="3dp"
+    app:cardCornerRadius="0dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgView_roomMain"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@drawable/background"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/txt_roomMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/imgView_roomMain"
+            android:layout_alignTop="@+id/imgView_roomMain"
+            android:layout_alignEnd="@+id/imgView_roomMain"
+            android:layout_alignBottom="@+id/imgView_roomMain"
+            android:gravity="start|bottom"
+            android:text="@string/room_number"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
+

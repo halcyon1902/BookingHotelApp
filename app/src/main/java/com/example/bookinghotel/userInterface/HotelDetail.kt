@@ -31,7 +31,7 @@ class HotelDetail : AppCompatActivity() {
     private var isInFavorite = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_hotel_detail)
+        setContentView(R.layout.hotel_detail)
         roomId = intent.getStringExtra("room")!!
         val txtRoom = findViewById<TextView>(R.id.txtView_roomDetail)
         val txtDescription = findViewById<TextView>(R.id.txtView_descriptionDetail)
