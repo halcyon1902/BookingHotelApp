@@ -1,4 +1,5 @@
 package com.example.bookinghotel.behavior
+
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.GestureDetector

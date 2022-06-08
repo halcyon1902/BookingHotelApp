@@ -122,11 +122,7 @@ class AccountFragmentUser : Fragment() {
         database.child(userId).updateChildren(userUpdate)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(
-                        activity,
-                        "Successfully updated information!",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    Toast.makeText(activity, "Successfully updated information!", Toast.LENGTH_LONG).show()
                 }
             }
     }

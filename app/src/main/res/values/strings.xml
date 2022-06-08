@@ -81,4 +81,10 @@
     <string name="reset">Reset</string>
     <string name="apply">Apply</string>
     <string name="sort_by_type">Sort by type</string>
+    <string name="max">Max</string>
+    <string name="min">Min</string>
+    <string name="to">To</string>
+    <string name="from">From</string>
+    <string name="_0">0</string>
+    <string name="_10000000">10000000</string>
 </resources>

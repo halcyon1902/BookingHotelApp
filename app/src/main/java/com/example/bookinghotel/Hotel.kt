@@ -1,6 +1,8 @@
 package com.example.bookinghotel
+
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+
 @Parcelize
 data class Hotel(
     val floor: String? = null,

@@ -45,6 +45,7 @@
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/drawable-v24/container_explore.xml" value="0.226" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/drawable-xxhdpi/gradient_color.xml" value="0.282" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/drawable-xxhdpi/gradient_color_user_bg.xml" value="0.282" />
+        <entry key="..\:/GitHub/BookingApp/app/src/main/res/drawable/border_edittext.xml" value="0.2455" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/drawable/button.xml" value="0.2485" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/drawable/buttonshapewhitebg.xml" value="0.255" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/drawable/custom_button.xml" value="0.2455" />
@@ -66,7 +67,7 @@
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/edit_avatar.xml" value="0.30085470085470084" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/edit_profile.xml" value="0.2636752136752137" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/favorite_card.xml" value="0.18486842105263157" />
-        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/filter.xml" value="0.20953947368421053" />
+        <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/filter.xml" value="0.20592105263157895" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/fogot_password.xml" value="0.2726495726495726" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/fragment_account_user.xml" value="0.288034188034188" />
         <entry key="..\:/GitHub/BookingApp/app/src/main/res/layout/fragment_app_info_user.xml" value="0.22171052631578947" />

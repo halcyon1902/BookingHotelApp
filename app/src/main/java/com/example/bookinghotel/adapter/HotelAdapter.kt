@@ -39,19 +39,9 @@ class HotelAdapter(
         holder.txtViewType.text = item.typeroom
         val type = "Double bed"
         if (item.typeroom.equals(type)) {
-            holder.txtViewType.setCompoundDrawablesWithIntrinsicBounds(
-                R.drawable.double_bed,
-                0,
-                0,
-                0
-            )
+            holder.txtViewType.setCompoundDrawablesWithIntrinsicBounds(R.drawable.double_bed, 0, 0, 0)
         } else {
-            holder.txtViewType.setCompoundDrawablesWithIntrinsicBounds(
-                R.drawable.single_bed,
-                0,
-                0,
-                0
-            )
+            holder.txtViewType.setCompoundDrawablesWithIntrinsicBounds(R.drawable.single_bed, 0, 0, 0)
         }
     }
 
@@ -71,7 +61,7 @@ class HotelAdapter(
         }
 
         override fun onClick(v: View?) {
-            val position = bindingAdapterPosition
+            val position = layoutPosition
             if (position != RecyclerView.NO_POSITION) {
                 listener.onItemClick(position)
             }

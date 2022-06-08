@@ -11,7 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.models.SlideModel
@@ -27,7 +27,7 @@ class HotelDetail : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var favorite: ImageView
     private var roomId = ""
-    private var image =""
+    private var image = ""
     private var isInFavorite = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,8 +45,8 @@ class HotelDetail : AppCompatActivity() {
         builder.setView(R.layout.loading_dialog)
         dialog = builder.create()
         //
-        auth=FirebaseAuth.getInstance()
-        if (auth.currentUser!=null){
+        auth = FirebaseAuth.getInstance()
+        if (auth.currentUser != null) {
             checkIsFavorite()
         }
         //
@@ -66,7 +66,7 @@ class HotelDetail : AppCompatActivity() {
                             txtDescription.text = room?.mota
                             txtType.text = room?.typeroom
                             txtPrice.text = room?.price
-                            image= room?.image1.toString()
+                            image = room?.image1.toString()
                             //icon type
                             if (room?.typeroom.equals(type)) {
                                 txtType.setCompoundDrawablesWithIntrinsicBounds(
@@ -119,11 +119,8 @@ class HotelDetail : AppCompatActivity() {
     }
 
     private fun hideSystemBars() {
-        val windowInsetsController =
-            ViewCompat.getWindowInsetsController(window.decorView) ?: return
-        windowInsetsController.systemBarsBehavior =
-            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
     }
 
     private fun setDialog(show: Boolean) {

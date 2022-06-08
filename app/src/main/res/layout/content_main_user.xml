@@ -25,9 +25,9 @@
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         android:background="@color/PrimaryColor"
-        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         app:itemIconSize="35sp"
         app:itemTextColor="@color/black"
         app:labelVisibilityMode="labeled"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         app:menu="@menu/bottom_menu_user" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

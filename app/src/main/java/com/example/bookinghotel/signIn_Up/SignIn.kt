@@ -25,7 +25,7 @@ class SignIn : AppCompatActivity() {
         setContentView(binding.root)
 
         val preferences: SharedPreferences = getSharedPreferences("checkbox", MODE_PRIVATE)
-        val checkbox : String? = preferences.getString("remember", "")
+        val checkbox: String? = preferences.getString("remember", "")
         if (checkbox.equals("true")) {
             startActivity(Intent(this@SignIn, MainScreenUser::class.java))
             finish()

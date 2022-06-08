@@ -113,7 +113,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="5dp"
                     android:fontFamily="@font/open_sans_light"
-                    android:text="0"
+                    android:text="@string/_0"
                     android:textAlignment="center"
                     android:textColor="@color/crimson"
                     android:textSize="35sp" />
