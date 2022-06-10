@@ -1,4 +1,4 @@
-package com.example.bookinghotel
+package com.example.bookinghotel.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -13,6 +13,6 @@ data class Hotel(
     val image1: String? = null,
     val image2: String? = null,
     val image3: String? = null,
-    val image4: String? = null
+    val image4: String? = null,
 ) : Parcelable
 

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bookinghotel.FavoriteHotel
+import com.example.bookinghotel.model.FavoriteHotel
 import com.example.bookinghotel.R
 import com.example.bookinghotel.adapter.FavoriteAdapter
 import com.google.firebase.auth.FirebaseAuth

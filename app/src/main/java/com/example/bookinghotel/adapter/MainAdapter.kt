@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.bookinghotel.Hotel
+import com.example.bookinghotel.model.Hotel
 import com.example.bookinghotel.R
 
 class MainAdapter(

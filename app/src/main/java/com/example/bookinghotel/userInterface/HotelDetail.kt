@@ -4,25 +4,36 @@ import android.app.ActivityOptions.makeSceneTransitionAnimation
 import android.app.Dialog
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.view.Window
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.recyclerview.widget.RecyclerView
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.customview.customView
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.models.SlideModel
-import com.example.bookinghotel.Hotel
 import com.example.bookinghotel.R
+import com.example.bookinghotel.adapter.ReviewAdapter
+import com.example.bookinghotel.model.Hotel
+import com.example.bookinghotel.model.Review
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-
+import java.util.*
+import kotlin.math.roundToInt
 
 class HotelDetail : AppCompatActivity() {
     private lateinit var database: DatabaseReference
+    private val data = ArrayList<Review>()
+    private var reviewAdapter = ReviewAdapter(data)
+    private lateinit var recyclerview: RecyclerView
     private lateinit var dialog: Dialog
     private lateinit var auth: FirebaseAuth
     private lateinit var favorite: ImageView
@@ -66,23 +77,13 @@ class HotelDetail : AppCompatActivity() {
                             txtDescription.text = room?.mota
                             txtType.text = room?.typeroom
                             txtPrice.text = room?.price
-                            image = room?.image1.toString()
+                            //image = room?.image1.toString()
                             //icon type
                             if (room?.typeroom.equals(type)) {
-                                txtType.setCompoundDrawablesWithIntrinsicBounds(
-                                    R.drawable.double_bed,
-                                    0,
-                                    0,
-                                    0
-                                )
+                                txtType.setCompoundDrawablesWithIntrinsicBounds(R.drawable.double_bed, 0, 0, 0)
 
                             } else {
-                                txtType.setCompoundDrawablesWithIntrinsicBounds(
-                                    R.drawable.single_bed,
-                                    0,
-                                    0,
-                                    0
-                                )
+                                txtType.setCompoundDrawablesWithIntrinsicBounds(R.drawable.single_bed, 0, 0, 0)
                             }
                             //image
                             imageList.add(SlideModel(room?.image1))
@@ -100,10 +101,12 @@ class HotelDetail : AppCompatActivity() {
         })
         img.startSliding()
         setDialog(false)
+
         back.setOnClickListener {
             val intent = Intent(this@HotelDetail, ListHotel::class.java)
             startActivity(intent, makeSceneTransitionAnimation(this).toBundle())
         }
+
         favorite.setOnClickListener {
             auth = FirebaseAuth.getInstance()
             if (auth.currentUser != null) {
@@ -184,5 +187,30 @@ class HotelDetail : AppCompatActivity() {
                 Toast.makeText(this@HotelDetail, "Failed remove from favorite", Toast.LENGTH_SHORT)
                     .show()
             }
+    }
+
+    private fun openDialogReview() {
+        val dialog = MaterialDialog(this).customView(R.layout.dialog_review)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+
+        val etReview = dialog.findViewById<EditText>(R.id.et_review)
+        val etName = dialog.findViewById<EditText>(R.id.et_name)
+        val rate: RatingBar = dialog.findViewById(R.id.rate_star)
+        val btnSend: Button = dialog.findViewById(R.id.btn_send_review)
+//        btnSend.setOnClickListener { v ->
+//            dialog.dismiss()
+//            if (TextUtils.isEmpty(etReview.text.toString())) {
+//                etReview.error = "Required field"
+//            } else {
+//                val reviewModel = ReviewModel()
+//                reviewModel.setName(etName.text.toString())
+//                reviewModel.setReview(etReview.text.toString())
+//                reviewModel.setTimeStamp(Date())
+//                reviewModel.setTotalStarGiven(rate.rating.roundToInt())
+//
+//            }
+//        }
+        dialog.show()
     }
 }

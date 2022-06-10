@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.bookinghotel.User
+import com.example.bookinghotel.model.User
 import com.example.bookinghotel.databinding.SignUpBinding
 import com.example.bookinghotel.mainscreen.MainScreenUser
 import com.google.firebase.auth.FirebaseAuth

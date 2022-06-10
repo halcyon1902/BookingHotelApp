@@ -7,15 +7,17 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
-import com.example.bookinghotel.Hotel
+import com.example.bookinghotel.model.Hotel
 import com.example.bookinghotel.R
 import com.example.bookinghotel.adapter.HotelAdapter
+import com.example.bookinghotel.mainscreen.MainScreenUser
 import com.google.firebase.database.*
 
 
@@ -26,6 +28,8 @@ class ListHotel : AppCompatActivity(), HotelAdapter.OnItemClickListener {
     private val doubledata = ArrayList<Hotel>()// danh sách dữ liệu lấy khi sort theo double type
     private val singledata = ArrayList<Hotel>()// danh sách dữ liệu lấy khi sort theo single type
     private val pricedata = ArrayList<Hotel>()// danh sách dữ liệu lấy khi sort theo price
+    private val desdata = ArrayList<Hotel>()// danh sách dữ liệu sort theo descending
+    private val ascdata = ArrayList<Hotel>()// danh sách dữ liệu sort theo ascending
     private var hotelAdapter = HotelAdapter(data, this)
     private lateinit var recyclerview: RecyclerView
     private lateinit var database: DatabaseReference
@@ -38,6 +42,7 @@ class ListHotel : AppCompatActivity(), HotelAdapter.OnItemClickListener {
         recyclerview.layoutManager = LinearLayoutManager(this)
         val sort = findViewById<ImageButton>(R.id.sort_btn)
         val filter = findViewById<ImageButton>(R.id.filter_btn)
+        val undo = findViewById<ImageButton>(R.id.undo_btn)
         recyclerview.setHasFixedSize(true)
         initPrefs()
         //event
@@ -59,12 +64,41 @@ class ListHotel : AppCompatActivity(), HotelAdapter.OnItemClickListener {
             override fun onCancelled(error: DatabaseError) {
             }
         })
-
+        undo.setOnClickListener {
+            val intent = Intent(this@ListHotel, MainScreenUser::class.java)
+            startActivity(intent)
+            finish()
+        }
         filter.setOnClickListener {
             showFilterDialog()
         }
         sort.setOnClickListener {
-
+            desdata.clear()
+            ascdata.clear()
+            desdata.addAll(searchdata)
+            ascdata.addAll(searchdata)
+            searchdata.clear()
+            val options = arrayOf("Ascending", "Descending")
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Sort by")
+            builder.setItems(options) { _, which ->
+                if (which == 0) {
+                    ascdata.sortBy {
+                        it.roomnumber
+                    }
+                    searchdata.addAll(ascdata)
+                    hotelAdapter = HotelAdapter(searchdata, this@ListHotel)
+                    recyclerview.adapter = hotelAdapter
+                } else if (which == 1) {
+                    desdata.sortByDescending {
+                        it.roomnumber
+                    }
+                    searchdata.addAll(desdata)
+                    hotelAdapter = HotelAdapter(searchdata, this@ListHotel)
+                    recyclerview.adapter = hotelAdapter
+                }
+            }
+            builder.create().show()
         }
     }
 

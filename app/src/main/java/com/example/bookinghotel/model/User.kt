@@ -1,4 +1,4 @@
-package com.example.bookinghotel
+package com.example.bookinghotel.model
 
 data class User(
     val email: String? = null,

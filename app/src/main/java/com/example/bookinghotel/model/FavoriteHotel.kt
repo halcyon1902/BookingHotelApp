@@ -1,4 +1,4 @@
-package com.example.bookinghotel
+package com.example.bookinghotel.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

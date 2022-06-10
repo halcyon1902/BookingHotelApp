@@ -9,9 +9,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bookinghotel.Hotel
+import com.example.bookinghotel.model.Hotel
 import com.example.bookinghotel.R
 import com.example.bookinghotel.adapter.MainAdapter
+import com.example.bookinghotel.loading.LoadingHotel
 import com.google.firebase.database.*
 
 
@@ -34,8 +35,8 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
         //event
         getData()
         txtViewExplore.setOnClickListener {
-            // startActivity(Intent(activity, LoadingHotel::class.java))
-            startActivity(Intent(activity, ListHotel::class.java))
+            startActivity(Intent(activity, LoadingHotel::class.java))
+            //startActivity(Intent(activity, ListHotel::class.java))
         }
         return view
     }

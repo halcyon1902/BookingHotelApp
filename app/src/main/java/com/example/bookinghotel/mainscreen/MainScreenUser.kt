@@ -14,7 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.bookinghotel.R
-import com.example.bookinghotel.User
+import com.example.bookinghotel.model.User
 import com.example.bookinghotel.loading.LoadingExit
 import com.example.bookinghotel.signIn_Up.SignIn
 import com.example.bookinghotel.userInterface.*
