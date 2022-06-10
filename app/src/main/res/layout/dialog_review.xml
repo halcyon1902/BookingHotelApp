@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/transparent">
@@ -25,21 +26,27 @@
                 android:orientation="vertical">
 
 
-                <EditText
+                <TextView
                     android:id="@+id/et_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Your name"
-                    android:textSize="14sp" />
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    tools:Text="Your Name"
+                    tools:ignore="Autofill" />
 
 
                 <EditText
                     android:id="@+id/et_review"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:hint="Your review"
-                    android:textColorHint="@color/PrimaryColor"
-                    android:textSize="14sp" />
+                    android:hint="@string/your_review"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:background="@drawable/border_edittext"
+                    android:inputType="text"
+                    android:textSize="14sp"
+                    tools:ignore="Autofill" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -65,7 +72,6 @@
                     android:layout_marginRight="10dp"
                     android:background="@android:color/darker_gray" />
 
-                <!-- Yes button -->
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -75,7 +81,7 @@
                         android:id="@+id/btn_send_review"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Send Review"
+                        android:text="@string/send_review"
                         android:textAllCaps="false"
                         android:textColor="@color/PrimaryDarkColor"
                         android:textStyle="bold"

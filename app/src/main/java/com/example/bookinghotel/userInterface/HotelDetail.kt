@@ -4,12 +4,9 @@ import android.app.ActivityOptions.makeSceneTransitionAnimation
 import android.app.Dialog
 import android.content.ContentValues.TAG
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -24,9 +21,13 @@ import com.example.bookinghotel.R
 import com.example.bookinghotel.adapter.ReviewAdapter
 import com.example.bookinghotel.model.Hotel
 import com.example.bookinghotel.model.Review
+import com.example.bookinghotel.model.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import java.util.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 import kotlin.math.roundToInt
 
 class HotelDetail : AppCompatActivity() {
@@ -40,6 +41,9 @@ class HotelDetail : AppCompatActivity() {
     private var roomId = ""
     private var image = ""
     private var isInFavorite = false
+    private var nameUser = ""
+    private lateinit var userId: String
+    private var user: FirebaseUser? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.hotel_detail)
@@ -51,6 +55,7 @@ class HotelDetail : AppCompatActivity() {
         val back = findViewById<ImageView>(R.id.imageView_backDetail)
         val imageList = ArrayList<SlideModel>()
         val img = findViewById<ImageSlider>(R.id.imageView_roomDetail)
+        val review = findViewById<ImageButton>(R.id.btn_AddReview)
         favorite = findViewById(R.id.favorire)
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         builder.setView(R.layout.loading_dialog)
@@ -65,6 +70,9 @@ class HotelDetail : AppCompatActivity() {
         setDialog(true)
         hideSystemBars()
         //event
+        // get current user name
+        getCurrentUserName()
+        //get data
         database = FirebaseDatabase.getInstance().getReference("hotel")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -77,7 +85,7 @@ class HotelDetail : AppCompatActivity() {
                             txtDescription.text = room?.mota
                             txtType.text = room?.typeroom
                             txtPrice.text = room?.price
-                            //image = room?.image1.toString()
+                            image = room?.image1.toString()
                             //icon type
                             if (room?.typeroom.equals(type)) {
                                 txtType.setCompoundDrawablesWithIntrinsicBounds(R.drawable.double_bed, 0, 0, 0)
@@ -118,6 +126,10 @@ class HotelDetail : AppCompatActivity() {
             } else {
                 Toast.makeText(this@HotelDetail, "Failed", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        review.setOnClickListener {
+            openDialogReview()
         }
     }
 
@@ -166,11 +178,7 @@ class HotelDetail : AppCompatActivity() {
             }
             .addOnFailureListener {
                 Log.d(TAG, "Failed add to favorite ${it.message}")
-                Toast.makeText(
-                    this@HotelDetail,
-                    "Failed add to favorite ${it.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this@HotelDetail, "Failed add to favorite ${it.message}", Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -190,27 +198,64 @@ class HotelDetail : AppCompatActivity() {
     }
 
     private fun openDialogReview() {
-        val dialog = MaterialDialog(this).customView(R.layout.dialog_review)
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        val dialog = MaterialDialog(this)
+        dialog.customView(R.layout.dialog_review)
 
         val etReview = dialog.findViewById<EditText>(R.id.et_review)
-        val etName = dialog.findViewById<EditText>(R.id.et_name)
+        val etName = dialog.findViewById<TextView>(R.id.et_name)
         val rate: RatingBar = dialog.findViewById(R.id.rate_star)
         val btnSend: Button = dialog.findViewById(R.id.btn_send_review)
-//        btnSend.setOnClickListener { v ->
-//            dialog.dismiss()
-//            if (TextUtils.isEmpty(etReview.text.toString())) {
-//                etReview.error = "Required field"
-//            } else {
-//                val reviewModel = ReviewModel()
-//                reviewModel.setName(etName.text.toString())
-//                reviewModel.setReview(etReview.text.toString())
-//                reviewModel.setTimeStamp(Date())
-//                reviewModel.setTotalStarGiven(rate.rating.roundToInt())
-//
-//            }
-//        }
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
+        val formatted = current.format(formatter)
+        etName.text = nameUser
+        auth = FirebaseAuth.getInstance()
+        btnSend.setOnClickListener {
+            dialog.dismiss()
+            if (TextUtils.isEmpty(etReview.text.toString())) {
+                etReview.error = "Required field"
+            } else {
+                val hashMap = HashMap<String, Any>()
+                hashMap["userID"] = auth.currentUser.toString()
+                hashMap["roomID"] = roomId
+                hashMap["userName"] = nameUser
+                hashMap["review"] = etReview.text
+                hashMap["time"] = formatted.toString()
+                hashMap["rating"] = rate.rating.roundToInt().toString()
+                val ref = FirebaseDatabase.getInstance().getReference("hotel")
+                ref.child(roomId).child("review").child(roomId).setValue(hashMap)
+                    .addOnSuccessListener {
+                        Log.d(TAG, "Complete review")
+                        Toast.makeText(this@HotelDetail, "Complete", Toast.LENGTH_SHORT).show()
+                    }.addOnFailureListener {
+                        Log.d(TAG, "Failed to review ${it.message}")
+                        Toast.makeText(this@HotelDetail, "Failed to review ${it.message}", Toast.LENGTH_SHORT).show()
+                    }
+            }
+        }
         dialog.show()
+    }
+
+    private fun getCurrentUserName() {
+        val auth = FirebaseAuth.getInstance()
+        userId = auth.uid!!
+        user = FirebaseAuth.getInstance().currentUser
+        database = FirebaseDatabase.getInstance().getReference("user")
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var user: User?
+                for (child: DataSnapshot? in snapshot.children) {
+                    if (child?.key.equals(userId)) {
+                        user = child!!.getValue(User::class.java)
+                        assert(user != null)
+                        nameUser = user?.name.toString().trim()
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
     }
 }

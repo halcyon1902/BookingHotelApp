@@ -78,6 +78,9 @@ class AccountFragmentUser : Fragment() {
         database = FirebaseDatabase.getInstance().getReference("user")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                if (activity == null) {
+                    return
+                }
                 var user: User?
                 for (child: DataSnapshot? in snapshot.children) {
                     if (child?.key.equals(userId)) {
