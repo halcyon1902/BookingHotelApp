@@ -18,7 +18,7 @@
     <string name="history">History</string>
     <string name="menu">Menu</string>
     <string name="another_function">Another Function</string>
-    <string name="information_app">Information app</string>
+    <string name="information">Information</string>
     <string name="exit">Exit</string>
     <string name="settings">Settings</string>
     <string name="faq">FaQ</string>
@@ -88,7 +88,12 @@
     <string name="_0">0</string>
     <string name="_10000000">10000000</string>
     <string name="review">Review</string>
-    <string name="see_all">see all</string>
+    <string name="see_all">See All</string>
     <string name="send_review">Send Review</string>
     <string name="your_review">Your review</string>
+    <string name="_3">3</string>
+    <string name="_2">2</string>
+    <string name="_1">1</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
 </resources>

@@ -1,60 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="@drawable/background2"
     android:orientation="vertical"
     tools:context=".userInterface.ListHotel">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_marginTop="20dp">
+    <!--    <RelativeLayout-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="80dp"-->
+    <!--        android:layout_marginTop="20dp">-->
 
-        <ImageButton
-            android:id="@+id/undo_btn"
+    <!--        <ImageButton-->
+    <!--            android:id="@+id/undo_btn"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_alignParentStart="true"-->
+    <!--            android:layout_centerVertical="true"-->
+    <!--            android:layout_marginStart="20dp"-->
+    <!--            android:layout_marginTop="10dp"-->
+    <!--            android:layout_marginEnd="10dp"-->
+    <!--            android:layout_marginBottom="10dp"-->
+    <!--            android:background="@drawable/undo"-->
+    <!--            android:scaleType="fitCenter"-->
+    <!--            tools:ignore="ContentDescription" />-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:layout_alignParentEnd="true"-->
+    <!--            android:layout_centerVertical="true"-->
+    <!--            android:gravity="center"-->
+    <!--            android:orientation="horizontal">-->
+
+    <!--            <ImageButton-->
+    <!--                android:id="@+id/sort_btn"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_margin="10dp"-->
+    <!--                android:background="@drawable/sorting"-->
+    <!--                android:scaleType="fitCenter"-->
+    <!--                tools:ignore="ContentDescription" />-->
+
+    <!--            <ImageButton-->
+    <!--                android:id="@+id/filter_btn"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_margin="10dp"-->
+    <!--                android:background="@drawable/slider"-->
+    <!--                android:scaleType="fitCenter"-->
+    <!--                tools:ignore="ContentDescription" />-->
+    <!--        </LinearLayout>-->
+    <!--    </RelativeLayout>-->
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/custom_border_layout"
+        android:orientation="vertical">
+
+        <RelativeLayout
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/date_start"
+                android:layout_width="wrap_content"
+                android:layout_height="30sp"
+                android:layout_alignParentStart="true"
+                android:layout_margin="10dp"
+                android:text="01/01/2022"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                app:drawableStartCompat="@drawable/calendar"
+                tools:ignore="HardcodedText" />
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="10dp"
+                android:layout_height="1dp"
+                android:layout_centerInParent="true"
+                android:layout_toEndOf="@+id/date_start"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/date_end"
+                android:layout_width="wrap_content"
+                android:layout_height="30sp"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="10dp"
+                android:text="01/08/2022"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+
+        </RelativeLayout>
+
+
+        <Button
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/undo"
-            android:scaleType="fitCenter"
-            tools:ignore="ContentDescription" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/sort_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/sorting"
-                android:scaleType="fitCenter"
-                tools:ignore="ContentDescription" />
-
-            <ImageButton
-                android:id="@+id/filter_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/slider"
-                android:scaleType="fitCenter"
-                tools:ignore="ContentDescription" />
-        </LinearLayout>
-    </RelativeLayout>
-
+            android:background="@drawable/custom_search_view"
+            android:text="@string/place_autocomplete_search_hint" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcyView_Hotel"

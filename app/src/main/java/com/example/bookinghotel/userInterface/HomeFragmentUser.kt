@@ -9,10 +9,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bookinghotel.model.Hotel
 import com.example.bookinghotel.R
 import com.example.bookinghotel.adapter.MainAdapter
-import com.example.bookinghotel.loading.LoadingHotel
+import com.example.bookinghotel.adapter.ReviewAdapter
+import com.example.bookinghotel.model.Hotel
+import com.example.bookinghotel.model.Review
 import com.google.firebase.database.*
 
 
@@ -21,22 +22,35 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
     private lateinit var recyclerview: RecyclerView
     private val data = ArrayList<Hotel>()
     private var mainAdapter = MainAdapter(data, this)
+    private lateinit var recyclerviewReview: RecyclerView
+    private val dataReview = ArrayList<Review>()
+    private var reviewAdapter = ReviewAdapter(dataReview)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_home_user, container, false)
         val txtViewExplore = view.findViewById<TextView>(R.id.txtView_Explore)
+        val tvSeeAll = view.findViewById<TextView>(R.id.tv_seeall)
+
         recyclerview = view.findViewById(R.id.recyclerview)
-        recyclerview.layoutManager =
-            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        recyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         recyclerview.setHasFixedSize(true)
+
+        recyclerviewReview = view.findViewById(R.id.recycler_review)
+        recyclerviewReview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        recyclerviewReview.setHasFixedSize(true)
+
         //event
         getData()
+        getReview()
         txtViewExplore.setOnClickListener {
-            startActivity(Intent(activity, LoadingHotel::class.java))
-            //startActivity(Intent(activity, ListHotel::class.java))
+//            startActivity(Intent(activity, LoadingHotel::class.java))
+            startActivity(Intent(activity, ListHotel::class.java))
+        }
+        tvSeeAll.setOnClickListener {
+            startActivity(Intent(activity, ListReview::class.java))
         }
         return view
     }
@@ -68,4 +82,28 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
         startActivity(intent)
     }
 
+    private fun getReview() {
+        database = FirebaseDatabase.getInstance().getReference("review")
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                dataReview.clear()
+                if (snapshot.exists()) {
+                    for (Snapshot in snapshot.children) {
+
+                        val review = Snapshot.getValue(Review::class.java)
+                        dataReview.add(review!!)
+
+                    }
+                    dataReview.shuffle()
+                    reviewAdapter = ReviewAdapter(dataReview)
+                    recyclerviewReview.adapter = reviewAdapter
+
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
 }

@@ -30,6 +30,7 @@ class SignUp : AppCompatActivity() {
 
         binding.btnSignUp.setOnClickListener {
             signUp()
+            finish()
         }
 
         binding.txtViewBack.setOnClickListener {
@@ -90,7 +91,7 @@ class SignUp : AppCompatActivity() {
                     val user = User(strEmail, strFullName, strPhone)
                     reference.child(userId).setValue(user)
 
-                    startActivity(Intent(this, MainScreenUser::class.java))
+                    startActivity(Intent(this, SignIn::class.java))
                     showToast("Sign Up success")
                 } else {
                     showToast("Sign Up failed")

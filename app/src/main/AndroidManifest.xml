@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookingHotel">
         <activity
+            android:name=".userInterface.ListReview"
+            android:exported="false" />
+        <activity
             android:name=".userInterface.HotelDetail"
             android:exported="false" />
         <activity

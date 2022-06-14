@@ -31,6 +31,10 @@
     <style name="Normal_Drawable">
         <item name="android:textSize">50sp</item>
     </style>
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/light_grey</item>
+        <item name="colorControlActivated">@color/yellow_dark</item>
+    </style>
 
 
 </resources>

@@ -44,8 +44,6 @@ class SignIn : AppCompatActivity() {
             binding.chbRememberMe.isChecked = false
             val intent = Intent(this, FogotPassword::class.java)
             startActivity(intent)
-            finish()
-
         }
         binding.chbRememberMe.setOnCheckedChangeListener { compoundButton, _ ->
             if (compoundButton.isChecked) {

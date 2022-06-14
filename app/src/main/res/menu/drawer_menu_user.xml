@@ -31,7 +31,7 @@
             <item
                 android:id="@+id/appInfo"
                 android:icon="@drawable/info"
-                android:title="@string/information_app" />
+                android:title="@string/information" />
             <item
                 android:id="@+id/exit"
                 android:icon="@drawable/shutdown"
