@@ -112,17 +112,39 @@ class ListReview : AppCompatActivity() {
 
     private fun init() {
         val totalVoter = findViewById<TextView>(R.id.tv_total_user)
+        val totalRating = findViewById<TextView>(R.id.tv_total_rating)
+        val totalStar = findViewById<RatingBar>(R.id.total_star_rating)
         reviewRef = FirebaseDatabase.getInstance().getReference("review")
         reviewRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val count = snapshot.childrenCount.toString()
-                totalVoter.text = count
+                val countNumber = snapshot.childrenCount.toString()
+                totalVoter.text = countNumber
+                var count = 0.0
+                for (ds in snapshot.children) {
+                    val ratingg: String = ds.child("star").getValue(String::class.java)!!
+                    val rate = ratingg.toDouble()
+                    count += rate
+                }
+                val avarage: Double = count / snapshot.childrenCount
+                totalRating.text = avarage.toString()
+                totalStar.rating = avarage.toString().toFloat()
+
             }
 
             override fun onCancelled(error: DatabaseError) {
 
             }
         })
+        reviewRef.orderByChild("star").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+
     }
 
     private fun getReview() {
