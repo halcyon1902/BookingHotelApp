@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_gravity="center"
     android:background="@android:color/transparent">
 
     <LinearLayout
@@ -25,7 +26,6 @@
                 android:layout_margin="10dp"
                 android:orientation="vertical">
 
-
                 <TextView
                     android:id="@+id/et_name"
                     android:layout_width="match_parent"
@@ -34,7 +34,6 @@
                     android:textSize="15sp"
                     tools:Text="Your Name"
                     tools:ignore="Autofill" />
-
 
                 <EditText
                     android:id="@+id/et_review"

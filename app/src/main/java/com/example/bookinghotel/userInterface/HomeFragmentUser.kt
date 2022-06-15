@@ -17,6 +17,8 @@ import com.example.bookinghotel.adapter.MainAdapter
 import com.example.bookinghotel.adapter.ReviewAdapter
 import com.example.bookinghotel.model.Hotel
 import com.example.bookinghotel.model.Review
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.database.*
 
@@ -47,10 +49,15 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
             startActivity(Intent(activity, ListReview::class.java))
         }
         date.setOnClickListener {
-            val datePicker = MaterialDatePicker.Builder.dateRangePicker().build()
+            val constraintsBuilder = CalendarConstraints.Builder().setValidator(DateValidatorPointForward.now())
+            val datePicker =
+                MaterialDatePicker.Builder.dateRangePicker().setTheme(R.style.ThemeOverlay_App_DatePicker).setTitleText("").setCalendarConstraints(constraintsBuilder.build())
+                    .build()
+
             childFragmentManager.let { manager ->
                 datePicker.show(manager, "DatePickerDialog")
             }
+
             datePicker.addOnPositiveButtonClickListener {
                 Toast.makeText(context, "${datePicker.headerText} is selected", Toast.LENGTH_LONG).show()
             }
@@ -111,7 +118,6 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
                     dataReview.shuffle()
                     reviewAdapter = ReviewAdapter(dataReview)
                     recyclerviewReview.adapter = reviewAdapter
-
                 }
             }
 
