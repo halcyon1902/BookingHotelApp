@@ -20,7 +20,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/user_online_support"
-        android:icon="@drawable/online_support"
-        android:title="@string/online_support"
+        android:icon="@drawable/single_bed"
+        android:title="@string/list_room"
         app:showAsAction="ifRoom" />
 </menu>

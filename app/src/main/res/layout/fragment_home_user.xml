@@ -49,13 +49,14 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/layout_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <TextView
                     android:id="@+id/date_start"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="30dp"
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -75,10 +76,10 @@
                     android:layout_toEndOf="@+id/date_start"
                     android:background="@color/black" />
 
-                <EditText
+                <TextView
                     android:id="@+id/date_end"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="30dp"
                     android:layout_alignParentEnd="true"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -95,15 +96,16 @@
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:drawable/btn_dropdown_normal"
+                android:background="@android:drawable/btn_dropdown"
                 android:spinnerMode="dropdown" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_search_view"
-                android:text="@string/place_autocomplete_search_hint" />
+                android:text="@string/booking" />
         </LinearLayout>
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -134,19 +136,6 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="30sp" />
-
-            <!--            <ImageButton-->
-            <!--                android:id="@+id/btn_AddReview"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginStart="10dp"-->
-            <!--                android:layout_marginTop="10dp"-->
-            <!--                android:layout_marginEnd="10dp"-->
-            <!--                android:layout_marginBottom="10dp"-->
-            <!--                android:layout_toEndOf="@+id/review"-->
-            <!--                android:background="@drawable/create"-->
-            <!--                android:scaleType="fitCenter"-->
-            <!--                tools:ignore="ContentDescription" />-->
 
             <TextView
                 android:id="@+id/tv_seeall"

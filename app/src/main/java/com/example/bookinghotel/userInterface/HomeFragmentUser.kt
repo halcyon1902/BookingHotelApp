@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +17,7 @@ import com.example.bookinghotel.adapter.MainAdapter
 import com.example.bookinghotel.adapter.ReviewAdapter
 import com.example.bookinghotel.model.Hotel
 import com.example.bookinghotel.model.Review
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.database.*
 
 
@@ -30,6 +33,7 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
         val view: View = inflater.inflate(R.layout.fragment_home_user, container, false)
         val spinner = view.findViewById<Spinner>(R.id.spinner)
         val tvSeeAll = view.findViewById<TextView>(R.id.tv_seeall)
+        val date = view.findViewById<RelativeLayout>(R.id.layout_date)
         recyclerview = view.findViewById(R.id.recyclerview)
         recyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         recyclerview.setHasFixedSize(true)
@@ -42,7 +46,25 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
         tvSeeAll.setOnClickListener {
             startActivity(Intent(activity, ListReview::class.java))
         }
+        date.setOnClickListener {
+            val datePicker = MaterialDatePicker.Builder.dateRangePicker().build()
+            childFragmentManager.let { manager ->
+                datePicker.show(manager, "DatePickerDialog")
+            }
+            datePicker.addOnPositiveButtonClickListener {
+                Toast.makeText(context, "${datePicker.headerText} is selected", Toast.LENGTH_LONG).show()
+            }
 
+            // Setting up the event for when cancelled is clicked
+            datePicker.addOnNegativeButtonClickListener {
+                Toast.makeText(context, "${datePicker.headerText} is cancelled", Toast.LENGTH_LONG).show()
+            }
+
+            // Setting up the event for when back button is pressed
+            datePicker.addOnCancelListener {
+                Toast.makeText(context, "Date Picker Cancelled", Toast.LENGTH_LONG).show()
+            }
+        }
 
         return view
     }
@@ -97,9 +119,5 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
 
             }
         })
-    }
-
-    private fun getCal() {
-
     }
 }

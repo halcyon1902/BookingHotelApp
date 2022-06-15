@@ -88,5 +88,5 @@ dependencies {
     //custom dialog
     implementation 'com.afollestad.material-dialogs:core:3.3.0'
     implementation 'me.zhanghai.android.materialratingbar:library:1.4.0'
-    implementation 'com.andrewjapar.rangedatepicker:rangedatepicker:0.3'
+    implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
 }
