@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
-import android.widget.Spinner
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -34,6 +31,7 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.fragment_home_user, container, false)
         val spinner = view.findViewById<Spinner>(R.id.spinner)
+        val booking = view.findViewById<Button>(R.id.booking)
         val tvSeeAll = view.findViewById<TextView>(R.id.tv_seeall)
         val date = view.findViewById<RelativeLayout>(R.id.layout_date)
         recyclerview = view.findViewById(R.id.recyclerview)
@@ -47,6 +45,9 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
         getReview()
         tvSeeAll.setOnClickListener {
             startActivity(Intent(activity, ListReview::class.java))
+        }
+        booking.setOnClickListener {
+
         }
         date.setOnClickListener {
             val constraintsBuilder = CalendarConstraints.Builder().setValidator(DateValidatorPointForward.now())
