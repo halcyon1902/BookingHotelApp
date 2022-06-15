@@ -44,7 +44,7 @@ class ListReview : AppCompatActivity() {
         progressBar = findViewById(R.id.progressbar)
         recyclerview.layoutManager = LinearLayoutManager(this@ListReview, LinearLayoutManager.VERTICAL, false)
         recyclerview.setHasFixedSize(true)
-//        init()
+        init()
         setFullscreen()
         getReview()
         btnAdd.setOnClickListener {
@@ -110,31 +110,23 @@ class ListReview : AppCompatActivity() {
         }
     }
 
-    //    private fun init() {
-//        val totalVoter = findViewById<TextView>(R.id.tv_total_user)
-//        reviewRef = FirebaseDatabase.getInstance().getReference("review")
-//        progressBar.visibility = View.VISIBLE
-//        reviewRef.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                data.clear()
-//                val count = snapshot.childrenCount.toString()
-//                totalVoter.text = count
-//                for (Snapshot in snapshot.children) {
-//                    val review = Snapshot.getValue(Review::class.java)
-//                    data.add(review!!)
-//                }
-//                reviewAdapter = ReviewAdapter(data)
-//                recyclerview.adapter = reviewAdapter
-//                progressBar.visibility = View.INVISIBLE
-//
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//
-//            }
-//        })
-//    }
+    private fun init() {
+        val totalVoter = findViewById<TextView>(R.id.tv_total_user)
+        reviewRef = FirebaseDatabase.getInstance().getReference("review")
+        reviewRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val count = snapshot.childrenCount.toString()
+                totalVoter.text = count
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
+
     private fun getReview() {
+        progressBar.visibility = View.VISIBLE
         database = FirebaseDatabase.getInstance().getReference("review")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -148,13 +140,13 @@ class ListReview : AppCompatActivity() {
                     }
                     reviewAdapter = ReviewAdapter(data)
                     recyclerview.adapter = reviewAdapter
+                    progressBar.visibility = View.INVISIBLE
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
 
             }
-
         })
     }
 
