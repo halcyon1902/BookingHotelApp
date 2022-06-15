@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,33 +26,24 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
     private lateinit var recyclerviewReview: RecyclerView
     private val dataReview = ArrayList<Review>()
     private var reviewAdapter = ReviewAdapter(dataReview)
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.fragment_home_user, container, false)
-        val txtViewExplore = view.findViewById<TextView>(R.id.txtView_Explore)
+        val spinner = view.findViewById<Spinner>(R.id.spinner)
         val tvSeeAll = view.findViewById<TextView>(R.id.tv_seeall)
-
         recyclerview = view.findViewById(R.id.recyclerview)
         recyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         recyclerview.setHasFixedSize(true)
-
         recyclerviewReview = view.findViewById(R.id.recycler_review)
         recyclerviewReview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerviewReview.setHasFixedSize(true)
-
         //event
         getData()
         getReview()
-        txtViewExplore.setOnClickListener {
-//            startActivity(Intent(activity, LoadingHotel::class.java))
-            startActivity(Intent(activity, ListHotel::class.java))
-        }
         tvSeeAll.setOnClickListener {
             startActivity(Intent(activity, ListReview::class.java))
         }
+
+
         return view
     }
 
@@ -105,5 +97,9 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
 
             }
         })
+    }
+
+    private fun getCal() {
+
     }
 }

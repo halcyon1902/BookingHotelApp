@@ -39,30 +39,71 @@
                 tools:ignore="ContentDescription,ImageContrastCheck" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/txtView_Explore"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:background="@drawable/container_explore"
-            android:backgroundTint="@color/white"
-            android:fontFamily="@font/bariol_bold"
-            android:padding="15dp"
-            android:text="@string/explore"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            app:autoSizeTextType="uniform" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/custom_border_layout"
+            android:orientation="vertical">
 
-        <TextClock
-            android:id="@+id/textClock1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/border_edittext"
-            android:format12Hour="dd-MMM-yyyy hh:mm:ss a"
-            android:textColor="@color/PrimaryColor"
-            android:textSize="25sp" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/date_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="01/01/2022"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:drawableStartCompat="@drawable/calendar"
+                    tools:ignore="HardcodedText" />
+
+                <View
+                    android:id="@+id/line"
+                    android:layout_width="10dp"
+                    android:layout_height="1dp"
+                    android:layout_centerInParent="true"
+                    android:layout_toEndOf="@+id/date_start"
+                    android:background="@color/black" />
+
+                <EditText
+                    android:id="@+id/date_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="01/08/2022"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    tools:ignore="HardcodedText" />
+
+            </RelativeLayout>
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/btn_dropdown_normal"
+                android:spinnerMode="dropdown" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_search_view"
+                android:text="@string/place_autocomplete_search_hint" />
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
