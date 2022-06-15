@@ -18,7 +18,6 @@ import com.afollestad.materialdialogs.customview.customView
 import com.example.bookinghotel.R
 import com.example.bookinghotel.adapter.ReviewAdapter
 import com.example.bookinghotel.model.Review
-import com.example.bookinghotel.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.time.LocalDateTime
@@ -29,7 +28,6 @@ import kotlin.math.roundToInt
 
 class ListReview : AppCompatActivity() {
     private val data = ArrayList<Review>()
-    private var nameUser = ""
     private var idUser = ""
     private lateinit var auth: FirebaseAuth
     private lateinit var reviewRef: DatabaseReference
@@ -46,11 +44,10 @@ class ListReview : AppCompatActivity() {
         progressBar = findViewById(R.id.progressbar)
         recyclerview.layoutManager = LinearLayoutManager(this@ListReview, LinearLayoutManager.VERTICAL, false)
         recyclerview.setHasFixedSize(true)
-        reviewRef = FirebaseDatabase.getInstance().getReference("review")
-        init()
+//        init()
         setFullscreen()
+        getReview()
         btnAdd.setOnClickListener {
-            getCurrentUserName()
             openDialogReview()
         }
     }
@@ -65,9 +62,10 @@ class ListReview : AppCompatActivity() {
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
         val formatted = current.format(formatter)
-        etName.text = nameUser
         auth = FirebaseAuth.getInstance()
-        idUser = auth.uid.toString()
+        val nameUser = auth.currentUser!!.email
+        idUser = auth.currentUser!!.uid
+        etName.text = nameUser
         btnSend.setOnClickListener {
             dialog.dismiss()
             if (TextUtils.isEmpty(etReview.text.toString())) {
@@ -87,28 +85,6 @@ class ListReview : AppCompatActivity() {
         }
 
         dialog.show()
-    }
-
-    private fun getCurrentUserName() {
-        val auth = FirebaseAuth.getInstance()
-        val userId = auth.uid!!
-        database = FirebaseDatabase.getInstance().getReference("user")
-        database.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                var user: User?
-                for (child: DataSnapshot? in snapshot.children) {
-                    if (child?.key.equals(userId)) {
-                        user = child!!.getValue(User::class.java)
-                        assert(user != null)
-                        nameUser = user?.name.toString().trim()
-                    }
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-        })
     }
 
     private fun setFullscreen() {
@@ -134,29 +110,51 @@ class ListReview : AppCompatActivity() {
         }
     }
 
-    private fun init() {
-        val totalVoter = findViewById<TextView>(R.id.tv_total_user)
-        progressBar.visibility = View.VISIBLE
-        database = FirebaseDatabase.getInstance().getReference("rating").child("totalVoter")
-        reviewRef.addValueEventListener(object : ValueEventListener {
+    //    private fun init() {
+//        val totalVoter = findViewById<TextView>(R.id.tv_total_user)
+//        reviewRef = FirebaseDatabase.getInstance().getReference("review")
+//        progressBar.visibility = View.VISIBLE
+//        reviewRef.addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                data.clear()
+//                val count = snapshot.childrenCount.toString()
+//                totalVoter.text = count
+//                for (Snapshot in snapshot.children) {
+//                    val review = Snapshot.getValue(Review::class.java)
+//                    data.add(review!!)
+//                }
+//                reviewAdapter = ReviewAdapter(data)
+//                recyclerview.adapter = reviewAdapter
+//                progressBar.visibility = View.INVISIBLE
+//
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//
+//            }
+//        })
+//    }
+    private fun getReview() {
+        database = FirebaseDatabase.getInstance().getReference("review")
+        database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 data.clear()
-                val count = snapshot.childrenCount.toString()
-                totalVoter.text = count
-                database.setValue(count)
-                for (Snapshot in snapshot.children) {
-                    val review = Snapshot.getValue(Review::class.java)
-                    data.add(review!!)
-                }
-                reviewAdapter = ReviewAdapter(data)
-                recyclerview.adapter = reviewAdapter
-                progressBar.visibility = View.INVISIBLE
+                if (snapshot.exists()) {
+                    for (Snapshot in snapshot.children) {
 
+                        val review = Snapshot.getValue(Review::class.java)
+                        data.add(review!!)
+
+                    }
+                    reviewAdapter = ReviewAdapter(data)
+                    recyclerview.adapter = reviewAdapter
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
 
             }
+
         })
     }
 

@@ -5,9 +5,8 @@ import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.bookinghotel.model.User
 import com.example.bookinghotel.databinding.SignUpBinding
-import com.example.bookinghotel.mainscreen.MainScreenUser
+import com.example.bookinghotel.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
@@ -30,7 +29,6 @@ class SignUp : AppCompatActivity() {
 
         binding.btnSignUp.setOnClickListener {
             signUp()
-            finish()
         }
 
         binding.txtViewBack.setOnClickListener {
@@ -80,19 +78,17 @@ class SignUp : AppCompatActivity() {
             return
         }
 
-
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
         auth.createUserWithEmailAndPassword(strEmail, strPassword)
             .addOnCompleteListener { task ->
                 userId = auth.currentUser!!.uid
                 if (task.isSuccessful) {
-
                     reference = FirebaseDatabase.getInstance().getReference("user")
                     val user = User(strEmail, strFullName, strPhone)
                     reference.child(userId).setValue(user)
-
                     startActivity(Intent(this, SignIn::class.java))
                     showToast("Sign Up success")
+                    finish()
                 } else {
                     showToast("Sign Up failed")
                 }
