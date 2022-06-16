@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="15dp"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".ConfirmBooking">
 
@@ -27,12 +28,25 @@
 
 
     <TextView
+        android:id="@+id/type_room_booking"
         style="@style/NewTheme"
         android:hint="Select Room Type" />
 
-    <Spinner
-        android:id="@+id/spinRoomType"
-        style="@style/NewTheme" />
+    <TextView
+        android:id="@+id/email_booking"
+        style="@style/NewTheme"
+        android:hint="Email" />
+
+    <EditText
+        android:id="@+id/email_"
+        style="@style/NewTheme"
+        android:hint="Name" />
+
+    <EditText
+        style="@style/NewTheme"
+        android:hint="Phone"
+        android:inputType="number" />
+
 
     <GridLayout
         style="@style/NewTheme"
@@ -63,7 +77,6 @@
             android:layout_width="wrap_content"
             android:hint="0"
             android:inputType="number" />
-
     </GridLayout>
 
     <Button

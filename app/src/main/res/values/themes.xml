@@ -63,6 +63,7 @@
         <!-- Customize text field of the text input mode. -->
         <item name="textInputStyle">@style/FirebaseUI.TextInputLayout</item>
         <item name="rangeFillColor">?attr/colorPrimary</item>
+
     </style>
     <style name="NewTheme">
         <!-- Customized theme. -->
@@ -79,15 +80,11 @@
         <item name="android:textSize">25dp</item>
         <item name="android:textAlignment">center</item>
         <item name="android:layout_margin">15dp</item>
-
     </style>
-
-
     <style name="Style2">
         <item name="android:layout_margin">10dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">25dp</item>
     </style>
-
 </resources>
