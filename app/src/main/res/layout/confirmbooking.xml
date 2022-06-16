@@ -1,9 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="15dp"
+    android:orientation="vertical"
     tools:context=".ConfirmBooking">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Booking Your Room"
+        android:textAlignment="center"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/ChkIn"
+        style="@style/NewTheme"
+        android:hint="Check In Date" />
+
+    <TextView
+        android:id="@+id/ChkOut"
+        style="@style/NewTheme"
+        android:hint="Check Out Date" />
+
+
+    <TextView
+        style="@style/NewTheme"
+        android:hint="Select Room Type" />
+
+    <Spinner
+        android:id="@+id/spinRoomType"
+        style="@style/NewTheme" />
+
+    <GridLayout
+        style="@style/NewTheme"
+        android:columnCount="2"
+        android:orientation="horizontal"
+        android:rowCount="2">
+
+        <TextView
+            style="@style/MyStyle"
+            android:layout_width="wrap_content"
+            android:hint="Adult" />
+
+        <TextView
+            style="@style/MyStyle"
+            android:layout_width="wrap_content"
+            android:hint="Child" />
+
+        <EditText
+            android:id="@+id/etAdult"
+            style="@style/MyStyle"
+            android:layout_width="wrap_content"
+            android:hint="0"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/etChild"
+            style="@style/MyStyle"
+            android:layout_width="wrap_content"
+            android:hint="0"
+            android:inputType="number" />
+
+    </GridLayout>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        style="@style/NewTheme"
+        android:background="@drawable/custom_button"
+        android:text="Submit" />
+
+</LinearLayout>

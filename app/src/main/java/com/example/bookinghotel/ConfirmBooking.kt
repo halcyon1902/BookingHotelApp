@@ -9,6 +9,5 @@ class ConfirmBooking : AppCompatActivity() {
         setContentView(R.layout.confirmbooking)
 
 
-
     }
 }

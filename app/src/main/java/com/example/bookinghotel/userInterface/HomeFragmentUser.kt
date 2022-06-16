@@ -9,6 +9,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bookinghotel.ConfirmBooking
 import com.example.bookinghotel.R
 import com.example.bookinghotel.adapter.MainAdapter
 import com.example.bookinghotel.adapter.ReviewAdapter
@@ -47,7 +48,7 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
             startActivity(Intent(activity, ListReview::class.java))
         }
         booking.setOnClickListener {
-
+            startActivity(Intent(activity, ConfirmBooking::class.java))
         }
         date.setOnClickListener {
             val constraintsBuilder = CalendarConstraints.Builder().setValidator(DateValidatorPointForward.now())
