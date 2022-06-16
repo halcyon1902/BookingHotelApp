@@ -15,22 +15,61 @@
         android:text="Booking Your Room"
         android:textAlignment="center"
         android:textSize="30dp" />
+    <TextView
+        android:id="@+id/type_room_booking"
+        style="@style/NewTheme"
+        android:hint="Select Room Type" />
 
     <TextView
         android:id="@+id/ChkIn"
         style="@style/NewTheme"
         android:hint="Check In Date" />
 
+
     <TextView
         android:id="@+id/ChkOut"
         style="@style/NewTheme"
         android:hint="Check Out Date" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <TextView
+            android:layout_marginStart="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="Staydate:"/>
+        <TextView
+            android:id="@+id/staydate"
+            android:textSize="25dp"
+
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:hint="1" />
+    </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/type_room_booking"
-        style="@style/NewTheme"
-        android:hint="Select Room Type" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <TextView
+            android:layout_marginStart="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="Amount:"/>
+        <EditText
+            android:id="@+id/edt_amout_booking"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:textSize="25dp"
+            android:text="1"/>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/email_booking"
@@ -38,46 +77,18 @@
         android:hint="Email" />
 
     <EditText
-        android:id="@+id/email_"
+        android:id="@+id/edt_email_booking"
         style="@style/NewTheme"
         android:hint="Name" />
 
     <EditText
+        android:id="@+id/edt_phone_booking"
         style="@style/NewTheme"
         android:hint="Phone"
         android:inputType="number" />
 
 
-    <GridLayout
-        style="@style/NewTheme"
-        android:columnCount="2"
-        android:orientation="horizontal"
-        android:rowCount="2">
 
-        <TextView
-            style="@style/MyStyle"
-            android:layout_width="wrap_content"
-            android:hint="Adult" />
-
-        <TextView
-            style="@style/MyStyle"
-            android:layout_width="wrap_content"
-            android:hint="Child" />
-
-        <EditText
-            android:id="@+id/etAdult"
-            style="@style/MyStyle"
-            android:layout_width="wrap_content"
-            android:hint="0"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/etChild"
-            style="@style/MyStyle"
-            android:layout_width="wrap_content"
-            android:hint="0"
-            android:inputType="number" />
-    </GridLayout>
 
     <Button
         android:id="@+id/btnSubmit"
