@@ -18,6 +18,7 @@ import com.afollestad.materialdialogs.customview.customView
 import com.example.bookinghotel.R
 import com.example.bookinghotel.adapter.ReviewAdapter
 import com.example.bookinghotel.model.Review
+import com.example.bookinghotel.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.time.LocalDateTime
@@ -35,7 +36,7 @@ class ListReview : AppCompatActivity() {
     private lateinit var recyclerview: RecyclerView
     private lateinit var progressBar: ProgressBar
     private var reviewAdapter = ReviewAdapter(data)
-
+    private var nameUser = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.list_review)
@@ -48,6 +49,7 @@ class ListReview : AppCompatActivity() {
         setFullscreen()
         getReview()
         btnAdd.setOnClickListener {
+            getCurrentUserName()
             openDialogReview()
         }
     }
@@ -63,15 +65,16 @@ class ListReview : AppCompatActivity() {
         val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
         val formatted = current.format(formatter)
         auth = FirebaseAuth.getInstance()
-        val nameUser = auth.currentUser!!.email
         idUser = auth.currentUser!!.uid
+        val mailUser = auth.currentUser!!.email
         etName.text = nameUser
+        Log.e("name", nameUser)
         btnSend.setOnClickListener {
             dialog.dismiss()
             if (TextUtils.isEmpty(etReview.text.toString())) {
                 etReview.error = "Required field"
             } else {
-                val review = Review(nameUser, etReview.text.toString(), formatted.toString(), rate.rating.roundToInt().toString())
+                val review = Review(nameUser, mailUser, etReview.text.toString(), formatted.toString(), rate.rating.roundToInt().toString())
                 val ref = FirebaseDatabase.getInstance().getReference("review")
                 ref.child(idUser).setValue(review)
                     .addOnSuccessListener {
@@ -85,6 +88,28 @@ class ListReview : AppCompatActivity() {
         }
 
         dialog.show()
+    }
+
+    private fun getCurrentUserName() {
+        val auth = FirebaseAuth.getInstance()
+        val userId = auth.uid!!
+        database = FirebaseDatabase.getInstance().getReference("user")
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var user: User?
+                for (child: DataSnapshot? in snapshot.children) {
+                    if (child?.key.equals(userId)) {
+                        user = child!!.getValue(User::class.java)
+                        assert(user != null)
+                        nameUser = user?.name.toString().trim()
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
     }
 
     private fun setFullscreen() {
@@ -135,16 +160,6 @@ class ListReview : AppCompatActivity() {
 
             }
         })
-        reviewRef.orderByChild("star").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-        })
-
     }
 
     private fun getReview() {
@@ -155,15 +170,13 @@ class ListReview : AppCompatActivity() {
                 data.clear()
                 if (snapshot.exists()) {
                     for (Snapshot in snapshot.children) {
-
                         val review = Snapshot.getValue(Review::class.java)
                         data.add(review!!)
-
                     }
                     reviewAdapter = ReviewAdapter(data)
                     recyclerview.adapter = reviewAdapter
-                    progressBar.visibility = View.INVISIBLE
                 }
+                progressBar.visibility = View.INVISIBLE
             }
 
             override fun onCancelled(error: DatabaseError) {

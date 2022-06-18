@@ -183,7 +183,8 @@
                 android:text="@string/sign_in"
                 android:textColor="#96ffffff"
                 android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="ButtonStyle" />
 
             <Button
                 android:id="@+id/btn_DangKy"
@@ -195,7 +196,8 @@
                 android:text="@string/sign_up"
                 android:textColor="#96ffffff"
                 android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="ButtonStyle" />
 
         </LinearLayout>
 

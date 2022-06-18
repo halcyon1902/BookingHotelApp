@@ -31,7 +31,7 @@ class AccountFragmentUser : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        avedInstanceState: Bundle?
+        avedInstanceState: Bundle?,
     ): View? {
         val view = inflater.inflate(R.layout.fragment_account_user, container, false)
         val updateAvatar = view.findViewById<ImageView>(R.id.updateImage)

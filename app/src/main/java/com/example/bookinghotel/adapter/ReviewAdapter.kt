@@ -18,17 +18,18 @@ class ReviewAdapter(private var data: List<Review>) : RecyclerView.Adapter<Revie
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         holder.name.text = item.name
+        holder.mail.text = item.email
         holder.text.text = item.review
         val total = item.star?.toFloat()
         holder.ratingBar.rating = total!!
         holder.date.text = item.Date
-
     }
 
     override fun getItemCount() = data.size
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.tv_name)
+        val mail: TextView = itemView.findViewById(R.id.tv_mail)
         val text: TextView = itemView.findViewById(R.id.tv_text)
         val ratingBar: RatingBar = itemView.findViewById(R.id.rt_reviewUser)
         val date: TextView = itemView.findViewById(R.id.tv_date)

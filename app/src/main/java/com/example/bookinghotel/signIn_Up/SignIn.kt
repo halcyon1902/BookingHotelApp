@@ -10,7 +10,13 @@ import com.example.bookinghotel.R
 import com.example.bookinghotel.behavior.OnSwipeTouchListener
 import com.example.bookinghotel.databinding.SignInBinding
 import com.example.bookinghotel.mainscreen.MainScreenUser
+import com.example.bookinghotel.model.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+
 
 class SignIn : AppCompatActivity() {
 
@@ -107,14 +113,37 @@ class SignIn : AppCompatActivity() {
         auth.signInWithEmailAndPassword(strEmail, strPassword)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val intent = Intent(this, MainScreenUser::class.java)
-                    startActivity(intent)
-                    Toast.makeText(this, "Logged in successfully", Toast.LENGTH_LONG).show()
-                    finish()
+                    checkUser(strEmail)
                 } else {
                     Toast.makeText(this, "Wrong email or password", Toast.LENGTH_LONG).show()
 
                 }
             }
+    }
+
+    private fun checkUser(strEmail: String) {
+        val database = FirebaseDatabase.getInstance().getReference("user")
+        database.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var exist = false
+                for (child in snapshot.children) {
+                    val user: User? = child.getValue(User::class.java)
+                    if (user?.email.equals(strEmail)) {
+                        exist = true
+                        break
+                    }
+                }
+                if (exist) {
+                    val intent = Intent(applicationContext, MainScreenUser::class.java)
+                    startActivity(intent)
+                    Toast.makeText(applicationContext, "Logged in successfully", Toast.LENGTH_LONG).show()
+                    finish()
+                } else {
+                    Toast.makeText(applicationContext, "Wrong email or password", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {}
+        })
     }
 }

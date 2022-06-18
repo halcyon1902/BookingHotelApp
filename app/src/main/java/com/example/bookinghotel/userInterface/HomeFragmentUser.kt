@@ -3,7 +3,6 @@ package com.example.bookinghotel.userInterface
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,9 +19,9 @@ import com.example.bookinghotel.model.Hotel
 import com.example.bookinghotel.model.Review
 import com.example.bookinghotel.model.User
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.util.*
 
 
@@ -35,7 +34,6 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
     private val dataReview = ArrayList<Review>()
     private var reviewAdapter = ReviewAdapter(dataReview)
     private var typeAdapter: ArrayAdapter<String>? = null
-
     private lateinit var strTypeRoom: String
     private lateinit var spinner: Spinner
     private val listTypeRoom = ArrayList<String>()
@@ -46,27 +44,20 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
     private var staydate: Long? = null
 
     private val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy")
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.fragment_home_user, container, false)
-        spinner = view.findViewById<Spinner>(R.id.spinner)
+        spinner = view.findViewById(R.id.spinner)
         val booking = view.findViewById<Button>(R.id.booking)
         val tvSeeAll = view.findViewById<TextView>(R.id.tv_seeall)
 
-        dateEnd = view.findViewById<TextView>(R.id.date_end)
-        dateStart = view.findViewById<TextView>(R.id.date_start)
+        dateEnd = view.findViewById(R.id.date_end)
+        dateStart = view.findViewById(R.id.date_start)
 //        val date = view.findViewById<RelativeLayout>(R.id.layout_date)
-
         recyclerview = view.findViewById(R.id.recyclerview)
-        recyclerview.layoutManager =
-            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        recyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         recyclerview.setHasFixedSize(true)
         recyclerviewReview = view.findViewById(R.id.recycler_review)
-        recyclerviewReview.layoutManager =
-            LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        recyclerviewReview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerviewReview.setHasFixedSize(true)
         //event
         getListTypeRoom()
@@ -81,27 +72,23 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
             clickBooking()
         }
 
+        dateEnd.isEnabled = false
         dateStart.setOnClickListener {
             pickDateStart()
+            dateEnd.isEnabled = true
         }
 
         dateEnd.setOnClickListener {
-            pcikDateEnd()
+            pickDateEnd()
         }
 
         spinner.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 strTypeRoom = typeAdapter!!.getItem(position).toString()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("Not yet implemented")
             }
         }
         //        date.setOnClickListener {
@@ -141,61 +128,49 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
             dateStart.resources
             return
         }
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
+        val strDateCome = dateStart.text.toString().trim()
+        val strDateLeave = dateEnd.text.toString().trim()
+        val typeroom = strTypeRoom
+        var email: String?
+        var phone: String?
+        var name: String?
 
-
-        var uid  = FirebaseAuth.getInstance().currentUser?.uid
-        var strDateCome = dateStart.text.toString().trim()
-        var strDateLeave = dateEnd.text.toString().trim()
-        var typeroom = strTypeRoom
-        var email : String? = null
-        var phone : String? = null
-        var name : String? = null
-
-        var userRef = FirebaseDatabase.getInstance().reference.child("user")
+        val userRef = FirebaseDatabase.getInstance().reference.child("user")
         userRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                for (child in snapshot.children){
-                    if(child.key.equals(uid)){
+                for (child in snapshot.children) {
+                    if (child.key.equals(uid)) {
                         val user = child.getValue(User::class.java)
                         email = user!!.email.toString()
-                        phone = user!!.phone.toString()
-                        name = user!!.name.toString()
-
-                        val booking = Booking(strDateCome, strDateLeave, typeroom, email, name, phone, staydate)
-                        var intent = Intent(context, ConfirmBooking::class.java)
-                        intent.putExtra("clickBooking",booking)
+                        phone = user.phone.toString()
+                        name = user.name.toString()
+                        val booking = Booking(strDateCome, strDateLeave, typeroom, email, name, phone, staydate.toString())
+                        val intent = Intent(context, ConfirmBooking::class.java)
+                        intent.putExtra("clickBooking", booking)
                         startActivity(intent)
                     }
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+
             }
 
         })
 
     }
 
-    private fun pcikDateEnd() {
+    private fun pickDateEnd() {
         calendarEnd = Calendar.getInstance()
         val year = calendarEnd.get(Calendar.YEAR)
         val month = calendarEnd.get(Calendar.MONTH)
         val day = calendarEnd.get(Calendar.DAY_OF_MONTH)
-
-
-        val datepickerDialog = DatePickerDialog(
-            context!!,
-            DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDay ->
-                calendarEnd.set(mYear, mMonth, mDay)
-
-                dateEnd.text = simpleDateFormat.format(calendarEnd.time)
-                staydate = (calendarEnd.timeInMillis - calendarStart.timeInMillis) / (1000 * 60 * 60 * 24)
-            },
-            year,
-            month,
-            day
-        )
+        val datepickerDialog = DatePickerDialog(context!!, R.style.ThemeOverlay_App_DatePicker, { _, mYear, mMonth, mDay ->
+            calendarEnd.set(mYear, mMonth, mDay)
+            dateEnd.text = simpleDateFormat.format(calendarEnd.time)
+            staydate = (calendarEnd.timeInMillis - calendarStart.timeInMillis) / (1000 * 60 * 60 * 24)
+        }, year, month, day)
         datepickerDialog.datePicker.minDate = calendarStart.timeInMillis + (1000 * 60 * 60 * 24)
         datepickerDialog.show()
     }
@@ -205,22 +180,14 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
         val year = calendarStart.get(Calendar.YEAR)
         val month = calendarStart.get(Calendar.MONTH)
         val day = calendarStart.get(Calendar.DAY_OF_MONTH)
-
-        val datepickerDialog = DatePickerDialog(
-            context!!, DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDay ->
-
-
-                calendarStart.set(mYear, mMonth, mDay)
-                dateStart.text = simpleDateFormat.format(calendarStart.time)
-                calendarEnd = Calendar.getInstance()
-                calendarEnd.set(mYear, mMonth, mDay + 1)
-                dateEnd.text = simpleDateFormat.format(calendarEnd.time)
-
-                staydate = (calendarEnd.timeInMillis - calendarStart.timeInMillis) / (1000 * 60 * 60 * 24)
-            },
-            year,
-            month,
-            day
+        val datepickerDialog = DatePickerDialog(context!!, R.style.ThemeOverlay_App_DatePicker, { _, mYear, mMonth, mDay ->
+            calendarStart.set(mYear, mMonth, mDay)
+            dateStart.text = simpleDateFormat.format(calendarStart.time)
+            calendarEnd = Calendar.getInstance()
+            calendarEnd.set(mYear, mMonth, mDay + 1)
+            dateEnd.text = simpleDateFormat.format(calendarEnd.time)
+            staydate = (calendarEnd.timeInMillis - calendarStart.timeInMillis) / (1000 * 60 * 60 * 24)
+        }, year, month, day
         )
         datepickerDialog.datePicker.minDate = System.currentTimeMillis()
         datepickerDialog.show()
@@ -256,9 +223,7 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
                 }
             }
 
-            override fun onCancelled(error: DatabaseError) {
-
-            }
+            override fun onCancelled(error: DatabaseError) {}
         })
     }
 
@@ -284,9 +249,7 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
                 }
             }
 
-            override fun onCancelled(error: DatabaseError) {
-
-            }
+            override fun onCancelled(error: DatabaseError) {}
         })
     }
 }

@@ -40,12 +40,6 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_screen_user)
         setFullscreen()
-//        hideSystemBars()
-//        window.setFlags(
-//            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-//            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-//        )
-//        WindowCompat.setDecorFitsSystemWindows(window, false)
         bottomNavigationView = findViewById(R.id.bottom_nav_view_user)
         drawerLayout = findViewById(R.id.mainscreen_user)
         navigationView = findViewById(R.id.nav_view)
@@ -77,6 +71,11 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 }
                 R.id.user_history -> {
                     setCurrentFragment(HistoryFragmentUser())
+                    true
+                }
+                R.id.list_room -> {
+                    startActivity(Intent(this, ListHotel::class.java))
+                    this.finish()
                     true
                 }
                 else -> false
@@ -143,7 +142,7 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                         assert(user != null)
                         name.text = user?.name
                         mail.text = user?.email
-                        Glide.with(this@MainScreenUser).load(user?.image)
+                        Glide.with(applicationContext).load(user?.image)
                             .placeholder(R.drawable.test_account)
                             .fitCenter().into(image)
 

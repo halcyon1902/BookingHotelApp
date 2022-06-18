@@ -3,6 +3,7 @@
     <string name="booking_app">Booking App</string>
     <string name="enjoy_your_day">Enjoy your day</string>
     <string name="email">Email</string>
+    <string name="email2">Email:</string>
     <string name="password">Password</string>
     <string name="remember_me">Remember me</string>
     <string name="sign_in">Sign In</string>
@@ -12,7 +13,6 @@
     <string name="back">back</string>
     <string name="confirm">CONFIRM</string>
     <string name="verify_account">Verify account</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="account">Account</string>
     <string name="history">History</string>
@@ -32,12 +32,14 @@
     <string name="list_room">List room</string>
     <string name="update_profile">Update profile</string>
     <string name="update_password">Update</string>
-    <string name="change_pasword">Change User Password</string>
+    <string name="change_password">Change User Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="new_password">New Password</string>
     <string name="old_password">Old Password</string>
     <string name="full_name">Full name</string>
     <string name="phone">Phone</string>
+    <string name="full_name2">Full name:</string>
+    <string name="phone2">Phone:</string>
     <string name="save">save</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="everything_right_where_you_need_it">We give you everything right here, where you need it</string>
@@ -65,6 +67,7 @@
     <string name="double_bed">Double bed</string>
     <string name="single_bed">Single bed</string>
     <string name="room_type">Room Type</string>
+    <string name="room_type2">Room Type:</string>
     <string name="type">type</string>
     <string name="about">About</string>
     <string name="please_wait_this_may_take_a_moment">Please wait! This may take a moment.</string>
@@ -96,4 +99,14 @@
     <string name="_1">1</string>
     <string name="_4">4</string>
     <string name="_5">5</string>
+    <string name="booking_your_room"><u>BOOKING YOUR ROOM</u> </string>
+    <string name="check_in_date">Check In Date:</string>
+    <string name="check_in_date2">Check In Date</string>
+    <string name="check_out_date">Check Out Date:</string>
+    <string name="check_out_date2">Check Out Date</string>
+    <string name="stay_date">Stay date:</string>
+    <string name="amount">Amount:</string>
+    <string name="notification">Notification</string>
+    <string name="submit">Submit</string>
+    <string name="booking_date">booking date:</string>
 </resources>

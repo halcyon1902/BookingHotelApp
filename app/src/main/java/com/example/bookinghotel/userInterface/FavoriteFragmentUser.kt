@@ -25,9 +25,9 @@ class FavoriteFragmentUser : Fragment(), FavoriteAdapter.OnItemClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: View = inflater.inflate(R.layout.fragment_home_user, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_favorite_user, container, false)
         auth = FirebaseAuth.getInstance()
-        recyclerview = view.findViewById(R.id.recyclerview)
+        recyclerview = view.findViewById(R.id.rcyView_Favorite)
         recyclerview.layoutManager = LinearLayoutManager(activity)
         recyclerview.setHasFixedSize(true)
         recyclerview.adapter = favoriteAdapter

@@ -19,7 +19,7 @@
         android:title="@string/history"
         app:showAsAction="always" />
     <item
-        android:id="@+id/user_online_support"
+        android:id="@+id/list_room"
         android:icon="@drawable/single_bed"
         android:title="@string/list_room"
         app:showAsAction="ifRoom" />
