@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="15dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".userInterface.ConfirmBooking">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/robotomedium"
+        android:text="@string/booking_your_room"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/type"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/room_type2"
+            android:textColor="@color/peru"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/type_room_booking"
+            style="@style/NewTheme"
+            android:layout_toEndOf="@+id/type"
+            tools:text="single bed" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/checkin"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/check_in_date"
+            android:textColor="@color/peru"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/ChkIn"
+            style="@style/NewTheme"
+            android:layout_toEndOf="@+id/checkin"
+            tools:text="check in" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/checkout"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:text="@string/check_out_date"
+            android:textColor="@color/peru"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/ChkOut"
+            style="@style/NewTheme"
+            android:layout_toEndOf="@+id/checkout"
+            tools:text="check out" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/stay_date"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/staydate"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/_1"
+            android:textAlignment="center"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/amount"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/edt_amout_booking"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/_1"
+            android:textAlignment="center"
+            android:textColor="@color/dodger_blue"
+            android:textSize="25sp"
+            tools:ignore="Autofill,LabelFor,TextFields" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/mail"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/email2"
+            android:textColor="@color/peru"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/email_booking"
+            style="@style/Style2"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/mail"
+            android:maxLines="1"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            tools:text="@string/email" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/full_name2"
+            android:textColor="@color/peru"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/edt_name_booking"
+            style="@style/Style2"
+            android:layout_toEndOf="@+id/name"
+            android:maxLines="1"
+            android:textAlignment="center"
+            tools:ignore="Autofill,LabelFor,TextFields"
+            tools:text="@string/full_name" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/phone2"
+            android:textColor="@color/peru"
+            android:textSize="20sp" />
+
+        <EditText
+
+            android:id="@+id/edt_phone_booking"
+            style="@style/Style2"
+            android:layout_toEndOf="@+id/phone"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:textAlignment="center"
+            tools:ignore="Autofill,LabelFor"
+            tools:text="@string/phone" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tv_thongbao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notification"
+        android:textColor="@color/red"
+        android:textSize="25sp"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        style="@style/NewTheme"
+        android:background="@drawable/custom_button"
+        android:text="@string/submit" />
+
+</LinearLayout>

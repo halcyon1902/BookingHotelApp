@@ -89,4 +89,6 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:core:3.3.0'
     implementation 'me.zhanghai.android.materialratingbar:library:1.4.0'
     implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
+    //looping
+    implementation 'com.github.beksomega:loopinglayout:0.4.1'
 }

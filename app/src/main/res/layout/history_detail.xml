@@ -3,17 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="15dp"
+    android:background="@drawable/background3"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".ConfirmBooking">
+    android:id="@+id/layout"
+    tools:context=".userInterface.HistoryDetail">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/robotomedium"
-        android:text="@string/booking_your_room"
+        android:text="@string/your_bill"
         android:textAlignment="center"
+        android:textAllCaps="true"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -124,7 +126,7 @@
             android:text="@string/amount"
             android:textSize="25sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/edt_amout_booking"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
@@ -184,13 +186,13 @@
             android:textColor="@color/peru"
             android:textSize="20sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/edt_name_booking"
             style="@style/Style2"
             android:layout_toEndOf="@+id/name"
             android:maxLines="1"
             android:textAlignment="center"
-            tools:ignore="Autofill,LabelFor,TextFields"
+            tools:ignore="Autofill,LabelFor"
             tools:text="@string/full_name" />
     </RelativeLayout>
 
@@ -212,32 +214,13 @@
             android:textColor="@color/peru"
             android:textSize="20sp" />
 
-        <EditText
-
+        <TextView
             android:id="@+id/edt_phone_booking"
             style="@style/Style2"
             android:layout_toEndOf="@+id/phone"
-            android:inputType="phone"
             android:maxLines="1"
             android:textAlignment="center"
             tools:ignore="Autofill,LabelFor"
             tools:text="@string/phone" />
     </RelativeLayout>
-
-
-    <TextView
-        android:id="@+id/tv_thongbao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/notification"
-        android:textColor="@color/red"
-        android:textSize="25sp"
-        android:visibility="invisible" />
-
-    <Button
-        android:id="@+id/btnSubmit"
-        style="@style/NewTheme"
-        android:background="@drawable/custom_button"
-        android:text="@string/submit" />
-
 </LinearLayout>

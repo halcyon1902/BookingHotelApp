@@ -10,7 +10,6 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bookinghotel.ConfirmBooking
 import com.example.bookinghotel.R
 import com.example.bookinghotel.adapter.MainAdapter
 import com.example.bookinghotel.adapter.ReviewAdapter
@@ -21,7 +20,6 @@ import com.example.bookinghotel.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
 import java.util.*
 
 
@@ -49,13 +47,13 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
         spinner = view.findViewById(R.id.spinner)
         val booking = view.findViewById<Button>(R.id.booking)
         val tvSeeAll = view.findViewById<TextView>(R.id.tv_seeall)
-
         dateEnd = view.findViewById(R.id.date_end)
         dateStart = view.findViewById(R.id.date_start)
-//        val date = view.findViewById<RelativeLayout>(R.id.layout_date)
+        //data
         recyclerview = view.findViewById(R.id.recyclerview)
         recyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         recyclerview.setHasFixedSize(true)
+        //review
         recyclerviewReview = view.findViewById(R.id.recycler_review)
         recyclerviewReview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerviewReview.setHasFixedSize(true)
@@ -91,34 +89,6 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
-        //        date.setOnClickListener {
-        //            val constraintsBuilder = CalendarConstraints.Builder().setValidator(DateValidatorPointForward.now())
-        //            val datePicker =
-        //                MaterialDatePicker.Builder.dateRangePicker().setTheme(R.style.ThemeOverlay_App_DatePicker).setTitleText("").setCalendarConstraints(constraintsBuilder.build())
-        //                    .build()
-        //
-        //            childFragmentManager.let { manager ->
-        //                datePicker.show(manager, "DatePickerDialog")
-        //            }
-        //
-        //            datePicker.addOnPositiveButtonClickListener {
-        ////
-        ////                dateStart.text = simpleDateFormat.format(datePicker.headerText)
-        //                dateStart.text = datePicker.get
-        //
-        //                Toast.makeText(context, "${datePicker.headerText} is selected", Toast.LENGTH_LONG).show()
-        //            }
-        //
-        //            // Setting up the event for when cancelled is clicked
-        //            datePicker.addOnNegativeButtonClickListener {
-        //                Toast.makeText(context, "${datePicker.headerText} is cancelled", Toast.LENGTH_LONG).show()
-        //            }
-        //
-        //            // Setting up the event for when back button is pressed
-        //            datePicker.addOnCancelListener {
-        //                Toast.makeText(context, "Date Picker Cancelled", Toast.LENGTH_LONG).show()
-        //            }
-        //        }
         return view
     }
 

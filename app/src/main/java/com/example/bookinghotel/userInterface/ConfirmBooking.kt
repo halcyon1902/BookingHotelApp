@@ -1,4 +1,4 @@
-package com.example.bookinghotel
+package com.example.bookinghotel.userInterface
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.bookinghotel.R
 import com.example.bookinghotel.mainscreen.MainScreenUser
 import com.example.bookinghotel.model.Booking
 import com.example.bookinghotel.model.Hotel
@@ -37,7 +38,7 @@ class ConfirmBooking : AppCompatActivity() {
     private var listCheck = ArrayList<Boolean>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.confirmbooking)
+        setContentView(R.layout.confirm_booking)
         initUi()
         booking = intent.getParcelableExtra("clickBooking")!!
         displayBooking()
