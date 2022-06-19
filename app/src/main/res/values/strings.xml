@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">BookingHotel</string>
     <string name="booking_app">Booking App</string>
     <string name="enjoy_your_day">Enjoy your day</string>
@@ -53,8 +53,8 @@
         Được tạo ra vào năm 2022 ở Hutech, App được phát triển từ nhóm các bạn sinh viên trong quá trình thực hiện đồ án. App cung cấp các dịch vụ đặt phòng căn bản dựa trên nền tảng số hóa. App giúp mọi người dùng có trải nghiệm đặt phòng dễ dàng hơn.\n
         \tTHÔNG TIN LIÊN HỆ:\n
         Trụ sở chính:Dien Bien Phu, BinhThanh, HoChiMinh\n
-        Email : trantrungngu@gmail.com\n
-        Điện thoại : 0703603785 ( Trung ngu )\n
+        Email : DuaConBinhDuong@gmail.com\n
+        Điện thoại : 0703603785 ( Admin )\n
     </string>
     <string name="welcome_to_hotel">Welcome to Hotel</string>
     <string name="admin">admin</string>
@@ -110,4 +110,5 @@
     <string name="submit">Submit</string>
     <string name="booking_date">booking date:</string>
     <string name="your_bill">your bill</string>
+    <string name="retry" tools:ignore="PrivateResource">retry</string>
 </resources>

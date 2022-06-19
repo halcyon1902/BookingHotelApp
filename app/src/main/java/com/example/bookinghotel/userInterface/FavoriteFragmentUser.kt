@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bookinghotel.model.FavoriteHotel
 import com.example.bookinghotel.R
 import com.example.bookinghotel.adapter.FavoriteAdapter
+import com.example.bookinghotel.model.FavoriteHotel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -23,7 +23,7 @@ class FavoriteFragmentUser : Fragment(), FavoriteAdapter.OnItemClickListener {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_favorite_user, container, false)
         auth = FirebaseAuth.getInstance()

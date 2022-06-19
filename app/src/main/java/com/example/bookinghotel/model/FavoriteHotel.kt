@@ -7,5 +7,5 @@ import kotlinx.parcelize.Parcelize
 data class FavoriteHotel(
     val description: String? = null,
     val roomnumber: String? = null,
-    val image: String? = null
+    val image: String? = null,
 ) : Parcelable

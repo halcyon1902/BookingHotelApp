@@ -2,7 +2,6 @@ package com.example.bookinghotel.userInterface
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -59,7 +58,7 @@ class HistoryFragmentUser : Fragment(), BookingAdapter.OnItemClickListener {
 
     override fun onItemClick(position: Int) {
         val intent = Intent(activity, HistoryDetail::class.java)
-        intent.putExtra("bill",data[position])
+        intent.putExtra("bill", data[position])
         startActivity(intent)
     }
 }

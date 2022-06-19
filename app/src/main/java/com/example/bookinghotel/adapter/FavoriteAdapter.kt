@@ -7,12 +7,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.bookinghotel.model.FavoriteHotel
 import com.example.bookinghotel.R
+import com.example.bookinghotel.model.FavoriteHotel
 
 class FavoriteAdapter(
     private val list: List<FavoriteHotel>,
-    private val listener: OnItemClickListener
+    private val listener: OnItemClickListener,
 ) :
     RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
 

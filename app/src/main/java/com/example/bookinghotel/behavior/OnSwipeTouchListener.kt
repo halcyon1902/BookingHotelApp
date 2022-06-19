@@ -36,7 +36,7 @@ open class OnSwipeTouchListener(c: Context) : View.OnTouchListener {
             e1: MotionEvent,
             e2: MotionEvent,
             velocityX: Float,
-            velocityY: Float
+            velocityY: Float,
         ): Boolean {
             val result = false
             try {

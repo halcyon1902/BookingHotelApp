@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class SlowlyLinearLayoutManager(context: Context?, orientation: Int, reverseLayout: Boolean) :
     LinearLayoutManager(context, orientation, reverseLayout) {
-    override fun smoothScrollToPosition(recyclerView: RecyclerView, state: RecyclerView.State, position: Int,
+    override fun smoothScrollToPosition(
+        recyclerView: RecyclerView, state: RecyclerView.State, position: Int,
     ) {
         val linearSmoothScroller: LinearSmoothScroller =
             object : LinearSmoothScroller(recyclerView.context) {
@@ -19,6 +20,7 @@ class SlowlyLinearLayoutManager(context: Context?, orientation: Int, reverseLayo
         linearSmoothScroller.targetPosition = position
         startSmoothScroll(linearSmoothScroller)
     }
+
     companion object {
         private const val MILLISECONDS_PER_INCH = 500f
     }

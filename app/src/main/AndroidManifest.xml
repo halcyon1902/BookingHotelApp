@@ -32,9 +32,6 @@
             android:name=".userInterface.ListHotel"
             android:exported="false" />
         <activity
-            android:name=".otp.OTP"
-            android:exported="false" />
-        <activity
             android:name=".userInterface.EditAvatar"
             android:exported="false" />
         <activity

@@ -25,10 +25,6 @@
     <item android:title="@string/function">
         <menu>
             <item
-                android:id="@+id/question"
-                android:icon="@drawable/ask_question"
-                android:title="@string/faq" />
-            <item
                 android:id="@+id/appInfo"
                 android:icon="@drawable/info"
                 android:title="@string/information" />

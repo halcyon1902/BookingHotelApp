@@ -7,12 +7,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.bookinghotel.model.Hotel
 import com.example.bookinghotel.R
+import com.example.bookinghotel.model.Hotel
 
 class MainAdapter(
     private var data: List<Hotel>,
-    private val listener: OnItemClickListener
+    private val listener: OnItemClickListener,
 ) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

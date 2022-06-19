@@ -47,9 +47,9 @@
             android:layout_below="@id/txtView_RoomNumber"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:visibility="invisible"
             android:layout_toEndOf="@id/imageView_Room"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/txtView_TypeRoom"

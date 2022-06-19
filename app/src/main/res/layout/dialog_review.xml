@@ -39,11 +39,11 @@
                     android:id="@+id/et_review"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
+                    android:background="@drawable/border_edittext"
                     android:hint="@string/your_review"
+                    android:inputType="text"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
-                    android:background="@drawable/border_edittext"
-                    android:inputType="text"
                     android:textSize="14sp"
                     tools:ignore="Autofill" />
 

@@ -14,12 +14,8 @@ class LoadingApp : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.loading_app)
-
-
         val lottie = findViewById<LottieAnimationView>(R.id.lottie)
-
         lottie.animate().setDuration(2000).startDelay = 5000
-
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, SignIn::class.java)
             startActivity(intent)

@@ -163,8 +163,4 @@ class HotelDetail : AppCompatActivity() {
     }
 
 
-
-
-
-
 }

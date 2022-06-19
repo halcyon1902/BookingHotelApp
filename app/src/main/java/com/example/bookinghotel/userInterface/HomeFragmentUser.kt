@@ -222,4 +222,6 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
             override fun onCancelled(error: DatabaseError) {}
         })
     }
+
+
 }

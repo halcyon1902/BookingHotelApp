@@ -4,11 +4,11 @@
         <layer-list>
             <item>
                 <shape android:shape="rectangle">
-                    <solid android:color="@color/SecondaryLightColor" />
+                    <solid android:color="@color/blue_soft" />
                     <corners android:radius="200dp" />
                 </shape>
             </item>
-            <item android:bottom="4dp">
+            <item android:bottom="0dp">
                 <shape>
                     <stroke android:width="4dp" android:color="@color/SecondaryDarkColor" />
                     <corners android:radius="200dp" />

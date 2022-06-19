@@ -1,6 +1,9 @@
 package com.example.bookinghotel.mainscreen
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
 import android.view.*
@@ -12,6 +15,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.bookinghotel.R
 import com.example.bookinghotel.loading.LoadingExit
+import com.example.bookinghotel.loading.LoadingHotel
 import com.example.bookinghotel.model.User
 import com.example.bookinghotel.signIn_Up.SignIn
 import com.example.bookinghotel.userInterface.*
@@ -74,7 +78,7 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                     true
                 }
                 R.id.list_room -> {
-                    startActivity(Intent(this, ListHotel::class.java))
+                    startActivity(Intent(this, LoadingHotel::class.java))
                     this.finish()
                     true
                 }
@@ -113,10 +117,6 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 editor.apply()
                 startActivity(Intent(this, SignIn::class.java))
                 this.finish()
-            }
-            R.id.question -> {
-                setCurrentFragment(FAQFragmentUser())
-                item.isCheckable = false
             }
             R.id.appInfo -> {
                 setCurrentFragment(AppInfoFragmentUser())
@@ -176,6 +176,26 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                     or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
+        }
+    }
+
+    private fun checkForInternet(context: Context): Boolean {
+
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val network = connectivityManager.activeNetwork ?: return false
+            val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
+
+            return when {
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                else -> false
+            }
+        } else {
+            // if the android version is below M
+            @Suppress("DEPRECATION") val networkInfo =
+                connectivityManager.activeNetworkInfo ?: return false
+            @Suppress("DEPRECATION")
+            return networkInfo.isConnected
         }
     }
 
