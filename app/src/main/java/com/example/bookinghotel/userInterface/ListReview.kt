@@ -1,6 +1,7 @@
 package com.example.bookinghotel.userInterface
 
 import android.content.ContentValues
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
@@ -42,6 +43,7 @@ class ListReview : AppCompatActivity() {
         setContentView(R.layout.list_review)
         recyclerview = findViewById(R.id.rv_review)
         val btnAdd = findViewById<ImageButton>(R.id.btn_AddReview)
+        val back = findViewById<ImageButton>(R.id.back)
         progressBar = findViewById(R.id.progressbar)
         recyclerview.layoutManager = LinearLayoutManager(this@ListReview, LinearLayoutManager.VERTICAL, false)
         recyclerview.setHasFixedSize(true)
@@ -51,6 +53,9 @@ class ListReview : AppCompatActivity() {
         btnAdd.setOnClickListener {
             getCurrentUserName()
             openDialogReview()
+        }
+        back.setOnClickListener {
+            onBackPressed()
         }
     }
 

@@ -131,6 +131,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:text="@string/_1"
+            android:inputType="number"
             android:textAlignment="center"
             android:textColor="@color/dodger_blue"
             android:textSize="25sp"

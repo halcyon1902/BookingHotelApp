@@ -103,7 +103,18 @@
             android:layout_height="match_parent"
             android:layout_below="@id/btn_AddReview"
             tools:listitem="@layout/review" />
-
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/ic_baseline_keyboard_return_24"
+            android:layout_alignParentEnd="true"
+            tools:ignore="ContentDescription" />
     </RelativeLayout>
 
 </LinearLayout>
