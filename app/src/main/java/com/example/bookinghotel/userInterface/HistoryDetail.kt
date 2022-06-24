@@ -75,9 +75,9 @@ class HistoryDetail : AppCompatActivity() {
 
                 }
             })
-            onBackPressed()
-//            val intent = Intent(this@HistoryDetail, MainScreenUser::class.java)
-//            startActivity(intent)
+            finish()
+            val intent = Intent(this@HistoryDetail, MainScreenUser::class.java)
+            startActivity(intent)
 
         }
     }
