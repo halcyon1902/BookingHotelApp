@@ -1,9 +1,6 @@
 package com.example.bookinghotel.mainscreen
 
-import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
 import android.view.*
@@ -135,11 +132,9 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         database = FirebaseDatabase.getInstance().getReference("user")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                var user: User?
                 for (child: DataSnapshot? in snapshot.children) {
                     if (child?.key.equals(userId)) {
-                        user = child!!.getValue(User::class.java)
-                        assert(user != null)
+                        val user: User? = child?.getValue(User::class.java)
                         name.text = user?.name
                         mail.text = user?.email
                         Glide.with(applicationContext).load(user?.image)
@@ -178,25 +173,4 @@ class MainScreenUser : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                     or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
         }
     }
-
-    private fun checkForInternet(context: Context): Boolean {
-
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val network = connectivityManager.activeNetwork ?: return false
-            val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
-
-            return when {
-                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-                else -> false
-            }
-        } else {
-            // if the android version is below M
-            @Suppress("DEPRECATION") val networkInfo =
-                connectivityManager.activeNetworkInfo ?: return false
-            @Suppress("DEPRECATION")
-            return networkInfo.isConnected
-        }
-    }
-
 }

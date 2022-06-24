@@ -24,7 +24,8 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_centerVertical="true"
-                android:background="@drawable/bill" />
+                android:background="@drawable/bill"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/date"
@@ -46,6 +47,10 @@
                 android:layout_toEndOf="@+id/date"
                 android:textAlignment="center"
                 tools:text="booking date" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="ContentDescription" />
         </RelativeLayout>
 
         <TableLayout

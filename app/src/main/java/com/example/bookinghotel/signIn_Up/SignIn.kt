@@ -30,7 +30,6 @@ import com.google.firebase.database.ValueEventListener
 
 
 class SignIn : AppCompatActivity() {
-    private lateinit var checkNetworkConnection: CheckNetworkConnection
     private lateinit var binding: SignInBinding
     private lateinit var auth: FirebaseAuth
     var count = 0
@@ -153,9 +152,15 @@ class SignIn : AppCompatActivity() {
                 var exist = false
                 for (child in snapshot.children) {
                     val user: User? = child.getValue(User::class.java)
+                    val status= child.getValue(User::class.java)?.status.toString()
                     if (user?.email.equals(strEmail)) {
-                        exist = true
-                        break
+                        if (status == "true"){
+                            exist = true
+                            break
+                        }else{
+                            Toast.makeText(applicationContext, "Account is being banned", Toast.LENGTH_LONG).show()
+                            return
+                        }
                     }
                 }
                 if (exist) {

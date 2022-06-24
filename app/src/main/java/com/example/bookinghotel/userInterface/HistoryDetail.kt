@@ -1,26 +1,29 @@
 package com.example.bookinghotel.userInterface
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import android.view.WindowManager
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bookinghotel.R
 import com.example.bookinghotel.behavior.OnSwipeTouchListener
+import com.example.bookinghotel.mainscreen.MainScreenUser
 import com.example.bookinghotel.model.Booking
+import com.google.firebase.database.*
 
 class HistoryDetail : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.history_detail)
         val booking = intent.getParcelableExtra<Booking>("bill")
-        Log.e("data", "$booking")
+        val cancel = findViewById<Button>(R.id.btn_cancel)
         val type = findViewById<TextView>(R.id.type_room_booking)
         val checkin = findViewById<TextView>(R.id.ChkIn)
         val checkout = findViewById<TextView>(R.id.ChkOut)
@@ -51,6 +54,32 @@ class HistoryDetail : AppCompatActivity() {
                 onBackPressed()
             }
         })
+        cancel.setOnClickListener {
+            val database: DatabaseReference = FirebaseDatabase.getInstance().getReference("ticket booking")
+            val update: MutableMap<String, Any> = HashMap()
+            update["status"] = false
+            database.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (Snapshot in snapshot.children) {
+                            val temp = Snapshot.getValue(Booking::class.java)
+                            if (temp?.equals(booking) == true) {
+                                val key = Snapshot.key
+                                database.child("$key").updateChildren(update)
+                            }
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+            })
+            onBackPressed()
+//            val intent = Intent(this@HistoryDetail, MainScreenUser::class.java)
+//            startActivity(intent)
+
+        }
     }
 
     private fun setFullscreen() {

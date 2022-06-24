@@ -10,4 +10,5 @@ data class Review(
     val review: String? = null,
     val Date: String? = null,
     val star: String? = null,
+    val status: Boolean? = null,
 ) : Parcelable

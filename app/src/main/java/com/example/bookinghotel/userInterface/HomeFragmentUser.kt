@@ -105,7 +105,6 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
         var email: String?
         var phone: String?
         var name: String?
-
         val userRef = FirebaseDatabase.getInstance().reference.child("user")
         userRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

@@ -84,7 +84,8 @@ class SignUp : AppCompatActivity() {
                 userId = auth.currentUser!!.uid
                 if (task.isSuccessful) {
                     reference = FirebaseDatabase.getInstance().getReference("user")
-                    val user = User(strEmail, strFullName, strPhone)
+                    val status=true
+                    val user = User(strEmail, strFullName, strPhone, status)
                     reference.child(userId).setValue(user)
                     startActivity(Intent(this, SignIn::class.java))
                     showToast("Sign Up success")

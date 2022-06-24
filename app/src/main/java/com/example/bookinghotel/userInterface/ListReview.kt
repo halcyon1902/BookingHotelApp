@@ -1,10 +1,8 @@
 package com.example.bookinghotel.userInterface
 
 import android.content.ContentValues
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.view.WindowInsets
@@ -69,17 +67,17 @@ class ListReview : AppCompatActivity() {
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
         val formatted = current.format(formatter)
+        val status = true
         auth = FirebaseAuth.getInstance()
         idUser = auth.currentUser!!.uid
         val mailUser = auth.currentUser!!.email
         etName.text = nameUser
-        Log.e("name", nameUser)
         btnSend.setOnClickListener {
-            dialog.dismiss()
-            if (TextUtils.isEmpty(etReview.text.toString())) {
+            if (etReview.text.isEmpty()) {
                 etReview.error = "Required field"
+                etReview.requestFocus()
             } else {
-                val review = Review(nameUser, mailUser, etReview.text.toString(), formatted.toString(), rate.rating.roundToInt().toString())
+                val review = Review(nameUser, mailUser, etReview.text.toString(), formatted.toString(), rate.rating.roundToInt().toString(), status)
                 val ref = FirebaseDatabase.getInstance().getReference("review")
                 ref.child(idUser).setValue(review)
                     .addOnSuccessListener {
@@ -89,6 +87,7 @@ class ListReview : AppCompatActivity() {
                         Log.d(ContentValues.TAG, "Failed to review ${it.message}")
                         Toast.makeText(this@ListReview, "Failed to review ${it.message}", Toast.LENGTH_SHORT).show()
                     }
+                dialog.dismiss()
             }
         }
 
@@ -155,10 +154,10 @@ class ListReview : AppCompatActivity() {
                     val rate = ratingg.toDouble()
                     count += rate
                 }
-                val avarage: Double = count / snapshot.childrenCount
-                totalRating.text = avarage.toString()
-                totalStar.rating = avarage.toString().toFloat()
-
+                val avarage: Double = (count / snapshot.childrenCount.toDouble())
+                val temp = avarage.toString().toFloat().roundToInt()
+                totalRating.text = temp.toString()
+                totalStar.rating = temp.toFloat()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -175,8 +174,10 @@ class ListReview : AppCompatActivity() {
                 data.clear()
                 if (snapshot.exists()) {
                     for (Snapshot in snapshot.children) {
-                        val review = Snapshot.getValue(Review::class.java)
-                        data.add(review!!)
+                        if (Snapshot.getValue(Review::class.java)?.status == true) {
+                            val review = Snapshot.getValue(Review::class.java)
+                            data.add(review!!)
+                        }
                     }
                     reviewAdapter = ReviewAdapter(data)
                     recyclerview.adapter = reviewAdapter

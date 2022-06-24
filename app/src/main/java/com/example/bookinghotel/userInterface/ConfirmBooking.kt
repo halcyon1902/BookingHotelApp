@@ -150,8 +150,8 @@ class ConfirmBooking : AppCompatActivity() {
     }
 
     private fun clickSubmit() {
-        if (edtAmout.text.toString().trim().toInt()<=0){
-            edtAmout.error="Amount must not less than 0"
+        if (edtAmout.text.toString().trim().toInt() <= 0) {
+            edtAmout.error = "Amount must not less than 0"
             edtAmout.requestFocus()
             return
         }
@@ -201,11 +201,11 @@ class ConfirmBooking : AppCompatActivity() {
                                 booking["amount"] = strAmount
                                 booking["staydate"] = strStayDate
                                 booking["currentdate"] = dateTime
+                                booking["status"] = true
                                 ticketRef.push().setValue(booking)
                                 for (i in 1..amout) {
                                     for (j in 0 until stayDate) {
                                         calendar.set(year, month - 1, day + j)
-
                                         val date = simpleDateFormat.format(calendar.time).toString()
                                         val dateBooking: MutableMap<String, Any> = HashMap()
                                         dateBooking["email"] = strEmail
@@ -249,6 +249,7 @@ class ConfirmBooking : AppCompatActivity() {
         edtAmout = findViewById(R.id.edt_amout_booking)
         btnSubmit = findViewById(R.id.btnSubmit)
     }
+
     private fun setFullscreen() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             window.attributes.layoutInDisplayCutoutMode =
