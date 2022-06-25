@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.example.bookinghotel.R
 import com.example.bookinghotel.behavior.OnSwipeTouchListener
 import com.example.bookinghotel.mainscreen.MainScreenUser
@@ -54,6 +55,9 @@ class HistoryDetail : AppCompatActivity() {
                 onBackPressed()
             }
         })
+        if (booking?.status==false){
+            cancel.isVisible=false
+        }
         cancel.setOnClickListener {
             val database: DatabaseReference = FirebaseDatabase.getInstance().getReference("ticket booking")
             val update: MutableMap<String, Any> = HashMap()

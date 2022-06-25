@@ -43,11 +43,12 @@ class HistoryFragmentUser : Fragment(), BookingAdapter.OnItemClickListener {
                     for (roomSnapshot in snapshot.children) {
                         val mail = roomSnapshot.getValue(Booking::class.java)?.email.toString().trim()
                         if (mail == usermail) {
-                            if (roomSnapshot.getValue(Booking::class.java)?.status == true) {
-                                val temp = roomSnapshot.getValue(Booking::class.java)
-                                data.add(temp!!)
-                            }
+                            val temp = roomSnapshot.getValue(Booking::class.java)
+                            data.add(temp!!)
                         }
+                    }
+                    data.sortByDescending {
+                        it.currentdate
                     }
                     bookingAdapter = BookingAdapter(data, this@HistoryFragmentUser)
                     recyclerview.adapter = bookingAdapter

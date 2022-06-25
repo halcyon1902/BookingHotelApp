@@ -3,6 +3,7 @@ package com.example.bookinghotel.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookinghotel.R
@@ -22,6 +23,11 @@ class BookingAdapter(private var data: List<Booking>, private val listener: OnIt
         holder.bookingdate.text = item.currentdate
         holder.checkin.text = item.datecome
         holder.checkout.text = item.dateleave
+        if (item.status == true) {
+            holder.status.setBackgroundResource(R.drawable.check)
+        }else{
+            holder.status.setBackgroundResource(R.drawable.uncheck)
+        }
     }
 
     override fun getItemCount() = data.size
@@ -32,6 +38,7 @@ class BookingAdapter(private var data: List<Booking>, private val listener: OnIt
         val name: TextView = itemView.findViewById(R.id.name_table)
         val checkin: TextView = itemView.findViewById(R.id.checkin_table)
         val checkout: TextView = itemView.findViewById(R.id.checkout_table)
+        val status: ImageView = itemView.findViewById(R.id.status)
 
         init {
             itemView.setOnClickListener(this)

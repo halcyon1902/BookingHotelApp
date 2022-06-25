@@ -47,9 +47,14 @@
                 android:layout_toEndOf="@+id/date"
                 android:textAlignment="center"
                 tools:text="booking date" />
+
             <ImageView
+                android:id="@+id/status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:background="@drawable/uncheck"
                 tools:ignore="ContentDescription" />
         </RelativeLayout>
 

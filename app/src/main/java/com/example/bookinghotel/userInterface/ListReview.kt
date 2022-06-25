@@ -175,8 +175,10 @@ class ListReview : AppCompatActivity() {
                 if (snapshot.exists()) {
                     for (Snapshot in snapshot.children) {
                         if (Snapshot.getValue(Review::class.java)?.status == true) {
-                            val review = Snapshot.getValue(Review::class.java)
-                            data.add(review!!)
+                            if (Snapshot.getValue(Review::class.java)?.status == true) {
+                                val review = Snapshot.getValue(Review::class.java)
+                                data.add(review!!)
+                            }
                         }
                     }
                     reviewAdapter = ReviewAdapter(data)
