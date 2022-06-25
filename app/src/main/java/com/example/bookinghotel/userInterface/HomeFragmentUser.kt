@@ -209,8 +209,10 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
                 dataReview.clear()
                 if (snapshot.exists()) {
                     for (Snapshot in snapshot.children) {
-                        val review = Snapshot.getValue(Review::class.java)
-                        dataReview.add(review!!)
+                        if (Snapshot.getValue(Review::class.java)?.status == true) {
+                            val review = Snapshot.getValue(Review::class.java)
+                            dataReview.add(review!!)
+                        }
                     }
                     dataReview.shuffle()
                     reviewAdapter = ReviewAdapter(dataReview)

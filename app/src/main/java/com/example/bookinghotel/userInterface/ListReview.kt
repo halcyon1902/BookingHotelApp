@@ -67,7 +67,7 @@ class ListReview : AppCompatActivity() {
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
         val formatted = current.format(formatter)
-        val status = true
+        val status = false
         auth = FirebaseAuth.getInstance()
         idUser = auth.currentUser!!.uid
         val mailUser = auth.currentUser!!.email
