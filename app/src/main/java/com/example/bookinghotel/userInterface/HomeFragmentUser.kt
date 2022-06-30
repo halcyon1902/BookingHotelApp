@@ -204,15 +204,13 @@ class HomeFragmentUser : Fragment(), MainAdapter.OnItemClickListener {
 
     private fun getReview() {
         database = FirebaseDatabase.getInstance().getReference("review")
-        database.addValueEventListener(object : ValueEventListener {
+        database.orderByChild("status").equalTo(true).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 dataReview.clear()
                 if (snapshot.exists()) {
                     for (Snapshot in snapshot.children) {
-                        if (Snapshot.getValue(Review::class.java)?.status == true) {
                             val review = Snapshot.getValue(Review::class.java)
                             dataReview.add(review!!)
-                        }
                     }
                     dataReview.shuffle()
                     reviewAdapter = ReviewAdapter(dataReview)

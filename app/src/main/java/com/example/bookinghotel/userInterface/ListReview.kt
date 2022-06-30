@@ -144,7 +144,7 @@ class ListReview : AppCompatActivity() {
         val totalRating = findViewById<TextView>(R.id.tv_total_rating)
         val totalStar = findViewById<RatingBar>(R.id.total_star_rating)
         reviewRef = FirebaseDatabase.getInstance().getReference("review")
-        reviewRef.addValueEventListener(object : ValueEventListener {
+        reviewRef.orderByChild("status").equalTo(true).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val countNumber = snapshot.childrenCount.toString()
                 totalVoter.text = countNumber
@@ -169,17 +169,13 @@ class ListReview : AppCompatActivity() {
     private fun getReview() {
         progressBar.visibility = View.VISIBLE
         database = FirebaseDatabase.getInstance().getReference("review")
-        database.addValueEventListener(object : ValueEventListener {
+        database.orderByChild("status").equalTo(true).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 data.clear()
                 if (snapshot.exists()) {
                     for (Snapshot in snapshot.children) {
-                        if (Snapshot.getValue(Review::class.java)?.status == true) {
-                            if (Snapshot.getValue(Review::class.java)?.status == true) {
                                 val review = Snapshot.getValue(Review::class.java)
                                 data.add(review!!)
-                            }
-                        }
                     }
                     reviewAdapter = ReviewAdapter(data)
                     recyclerview.adapter = reviewAdapter
