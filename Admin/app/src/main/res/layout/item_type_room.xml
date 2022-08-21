@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.apachat.swipereveallayout.core.SwipeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipeTypeRoom"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:mode="same_level"
+    app:dragEdge="right"
+    android:background="@color/blanched_almond">
+
+    <!-- Your secondary layout here -->
+    <LinearLayout
+        android:id="@+id/layout_swipe"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/delete_type_room"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="#d2691e"
+            android:layout_gravity="center"
+            android:text="Enable/Disable"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textAlignment="center"/>
+        <TextView
+            android:id="@+id/update_typeroom"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="#d269"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:text="Edit"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+    <!-- Your main layout here -->
+
+    <TextView
+        android:id="@+id/tv_item_type_room"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="type room"
+        android:gravity="center"
+        android:paddingStart="5dp"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+</com.apachat.swipereveallayout.core.SwipeLayout>
+
+

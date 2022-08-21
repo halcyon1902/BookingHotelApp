@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="15dp"
+    android:background="@color/PrimaryColor"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ManageRoom.TicketDetail">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Booking Your Room"
+        android:textAlignment="center"
+        android:textSize="30dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/NewTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Type Room:" />
+
+        <TextView
+            android:id="@+id/type_room_ticket_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:hint="Select Room Type"
+            android:textSize="25dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <TextView
+            android:id="@+id/ChkIn_ticket_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/calendar"
+            android:hint="20-10-2010"
+            android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:hint="To"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/ChkOut_ticket_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="20-10-2010"
+            android:textSize="25dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Current Date:"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/tv_current_date_ticket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:hint="Date"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Staydate:"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/staydate_ticket_detail"
+            android:layout_width="50dp"
+
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:hint="1"
+            android:textSize="25dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amount:"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/edt_amount_ticket_detail"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:text="1"
+            android:textSize="25dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/email_ticket_detail"
+        style="@style/NewTheme"
+        android:drawableStart="@drawable/gmail"
+        android:drawablePadding="10dp"
+        android:hint="Email" />
+
+    <TextView
+        android:id="@+id/edt_email_booking"
+        style="@style/NewTheme"
+        android:drawableStart="@drawable/test_account"
+        android:drawablePadding="10dp"
+        android:hint="Name" />
+
+    <TextView
+        android:id="@+id/edt_phone_booking"
+        style="@style/NewTheme"
+        android:drawableStart="@drawable/phone"
+        android:drawablePadding="10dp"
+        android:hint="Phone"
+        android:inputType="number" />
+
+
+    <Button
+        android:id="@+id/btn_back_ticket_detail"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button"
+        android:text="Back"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:backgroundTint="@color/SecondaryColor"
+        tools:ignore="TouchTargetSizeCheck" />
+
+</LinearLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/account"
+            android:icon="@drawable/user"
+            android:title="Account" />
+        <item
+            android:id="@+id/sign_out"
+            android:icon="@drawable/logout"
+            android:title="Log out" />
+    </group>
+
+    <item android:title="Manage Account">
+        <menu>
+            <item
+                android:id="@+id/add_staff"
+                android:icon="@drawable/add2"
+                android:title="Add Staff" />
+
+            <item
+                android:id="@+id/list_admin"
+                android:icon="@drawable/admin"
+                android:title="List Admin" />
+
+            <item
+                android:id="@+id/list_customer"
+                android:icon="@drawable/user"
+                android:title="List Customer" />
+        </menu>
+    </item>
+
+    <item android:title="Manage Hotel">
+        <menu>
+
+            <item
+                android:id="@+id/add_room"
+                android:icon="@drawable/add2"
+                android:title="Add Room" />
+            <item
+                android:id="@+id/add_type_room"
+                android:icon="@drawable/bed"
+                android:title="Room Types" />
+            <item
+                android:id="@+id/list_room"
+                android:icon="@drawable/room"
+                android:title="Rooms" />
+            <item
+                android:id="@+id/list_review"
+                android:icon="@drawable/review"
+                android:title="Reviews" />
+            <item
+                android:id="@+id/list_ticket"
+                android:icon="@drawable/ticket"
+                android:title="Tickets" />
+        </menu>
+    </item>
+
+
+</menu>
